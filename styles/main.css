@@ -1,0 +1,704 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure, fieldset):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+   */
+  scrollbar-gutter: stable;
+  /**
+    Плавный скролл
+   */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Убирает серую подсветку при тапе на мобильных устройствах (iOS/Android)
+ */
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут fill со значением 'none' или начинается с 'url')
+ */
+:where([fill]:not([fill=none],
+[fill^=url])) {
+  fill: currentColor;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут stroke со значением 'none')
+ */
+:where([stroke]:not([stroke=none],
+[stroke^=url])) {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Light.woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium.woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Regular.woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Medium.woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-SemiBold.woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-Bold.woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat-ExtraBold.woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Light.woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Regular.woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Medium.woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-SemiBold.woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-Bold.woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto-ExtraBold.woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../fonts/BebasNeue-Regular.woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --color-light-10: #ffffff;
+  --color-light-15: #fafafa;
+  --color-light-20: #f5f5f5;
+  --color-light-25: #eeeeee;
+  --color-light-30: #e0e0e0;
+  --color-light-35: #808080;
+  --color-light-40: #5c5c60;
+  --color-dark-10: #0c0c0c;
+  --color-dark-15: #1a1a1a;
+  --color-dark-20: #262626;
+  --color-dark-25: #333333;
+  --color-dark-30: #424242;
+  --color-dark-35: #525252;
+  --color-dark-40: #636363;
+  --color-green-10: #3eb489;
+  --color-green-15: #5bc49e;
+  --color-green-20: #77d4b3;
+  --color-green-25: #94e4c8;
+  --color-green-30: #b1f0dd;
+  --color-green-35: #cef5eb;
+  --color-green-40: #ebfaf5;
+  --color-red-10: #FF2400;
+  --color-red-15: #ff472b;
+  --color-red-20: #ff6b56;
+  --color-red-25: #ff8f81;
+  --color-red-30: #ffb3ad;
+  --color-red-35: #ffd7d9;
+  --color-red-40: #fffafa;
+  --color-accent: #3eb489;
+  --font-family-base: 'Montserrat', sans-serif;
+  --font-family-accent: 'Roboto', sans-serif;
+  --container-width: 80rem;
+  --container-padding-x: 6.25rem;
+  --section-padding-y: 9.375rem;
+}
+@media (width <= 90.06125rem) {
+  :root {
+    --container-width: 75rem;
+  }
+}
+:root {
+  --transition-duration: 0.2s;
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.large__container {
+  max-width: calc(var(--container-width) + 15.625rem + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (width <= 47.99875rem) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (width > 47.99875rem) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+body {
+  font-size: clamp(0.875rem, 0.7944214876rem + 0.3305785124vw, 1.125rem);
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  letter-spacing: 0px;
+  background-color: var(--color-dark-10);
+  color: var(--color-light-35);
+  line-height: 1rem;
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  text-decoration: none;
+  font-weight: 500;
+  color: inherit;
+}
+@media (any-hover: hover) {
+  a:hover {
+    color: var(--color-accent);
+  }
+}
+@media (any-hover: none) {
+  a:active {
+    color: var(--color-accent);
+  }
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-style: normal;
+  color: var(--color-light-10);
+  font-family: Roboto;
+}
+
+h1, .h1 {
+  font-size: clamp(3.125rem, 2.117768595rem + 4.132231405vw, 6.25rem);
+}
+
+h2, .h2 {
+  font-size: clamp(2.5625rem, 2.4013429752rem + 0.6611570248vw, 3.0625rem);
+}
+
+h3, .h3 {
+  font-size: clamp(1.75rem, 1.5082644628rem + 0.9917355372vw, 2.5rem);
+}
+
+h4, .h4 {
+  font-size: clamp(1.125rem, 0.923553719rem + 0.826446281vw, 1.75rem);
+}
+
+.header {
+  padding-top: 50px;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+}
+@media (width <= 63.99875rem) {
+  .header {
+    padding-top: 30px;
+  }
+}
+@media (width <= 47.99875rem) {
+  .header {
+    padding-top: 15px;
+  }
+}
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 40px;
+}
+@media (width <= 63.99875rem) {
+  .header__inner {
+    column-gap: 20px;
+  }
+}
+.header__logo {
+  text-transform: uppercase;
+  color: var(--color-light-10);
+  font-weight: 800;
+  font-size: 1.25rem;
+  cursor: pointer;
+  font-family: "Roboto";
+  letter-spacing: 0.125rem;
+}
+.header__logo__accent {
+  color: var(--color-accent);
+}
+@media (any-hover: hover) {
+  .header__logo:hover {
+    color: var(--color-light-30);
+  }
+}
+@media (any-hover: none) {
+  .header__logo:active {
+    color: var(--color-light-30);
+  }
+}
+.header__menu {
+  margin-left: auto;
+  font-size: 1rem;
+}
+@media (width <= 90.06125rem) {
+  .header__menu {
+    font-size: 0.875rem;
+  }
+}
+@media (width <= 63.99875rem) {
+  .header__menu {
+    font-size: 0.875rem;
+  }
+}
+.header__menu-list {
+  display: flex;
+  align-items: center;
+  column-gap: 40px;
+}
+@media (width <= 90.06125rem) {
+  .header__menu-list {
+    column-gap: 20px;
+  }
+}
+.header__menu-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 48px;
+}
+@media (any-hover: hover) {
+  .header__menu-link:hover::after {
+    width: 100%;
+  }
+}
+@media (any-hover: none) {
+  .header__menu-link:active::after {
+    width: 100%;
+  }
+}
+.header__menu-link::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  translate: -50%;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition-duration: inherit;
+}
+.header__button {
+  height: 48px;
+  padding-inline: 18px;
+  font-size: 16px;
+}
+@media (any-hover: hover) {
+  .header a:hover {
+    color: var(--color-light-10);
+  }
+}
+@media (any-hover: none) {
+  .header a:active {
+    color: var(--color-light-10);
+  }
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100vh;
+  top: 100%;
+  left: 5%;
+  transform-origin: 0% 0%;
+  transform: rotate(-90deg);
+  justify-content: center;
+  z-index: 2;
+}
+.title::before {
+  position: fixed;
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-dark-20);
+  top: 14px;
+}
+.title h1 {
+  font-size: 1.875rem;
+  line-height: 3.125rem;
+  text-transform: uppercase;
+  margin-left: 20%;
+  font-weight: 800;
+  font-family: Roboto;
+}
+.title span {
+  font-size: 0.875rem;
+  line-height: 0.625rem;
+  text-transform: uppercase;
+  margin-left: 20%;
+}
+@media (width <= 63.99875rem) {
+  .title {
+    display: none;
+  }
+}
+
+.hero {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+.hero h1 {
+  font-size: clamp(5rem, 2.5826446281rem + 9.9173553719vw, 12.5rem);
+}
+.hero__title {
+  z-index: 1;
+}
+
+.hero__section {
+  height: 100vh;
+  width: 100%;
+  background: url("../images/slide1.png") center/110% no-repeat;
+  z-index: 1;
+  position: relative;
+}
+.hero__section:before {
+  content: "";
+  position: absolute;
+  padding-top: var(--section-padding-y);
+  top: 0;
+  left: 0;
+  z-index: 0;
+  height: 100vh;
+  width: 100%;
+  background: url("../images/mask.png") center/100% no-repeat;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  height: 100vh;
+  width: 100%;
+  background: url("../images/mask.png") center/100% no-repeat;
+}
+
+.backtitle {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100vh;
+  top: 100%;
+  left: 92%;
+  transform-origin: 0% 0%;
+  transform: rotate(-90deg);
+  justify-content: center;
+  z-index: 2;
+}
+@media (width <= 63.99875rem) {
+  .backtitle {
+    display: none;
+  }
+}
+.backtitle::before {
+  position: fixed;
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-dark-20);
+  top: 14px;
+}
+.backtitle h1 {
+  cursor: pointer;
+  font-size: 2.5rem;
+  line-height: 3.125rem;
+  text-transform: uppercase;
+  margin-left: 15%;
+  font-weight: 800;
+  font-family: Roboto;
+  transition: 1s;
+}
+.backtitle span {
+  font-size: 0.875rem;
+  line-height: 0.625rem;
+  text-transform: uppercase;
+  margin-left: 20%;
+  transition: 1s;
+}
+@media (any-hover: hover) {
+  .backtitle:hover h1 {
+    margin-left: 20%;
+    transition: 1s;
+  }
+  .backtitle:hover span {
+    margin-left: 15%;
+    transition: 1s;
+  }
+}
+@media (any-hover: none) {
+  .backtitle:active h1 {
+    margin-left: 20%;
+    transition: 1s;
+  }
+  .backtitle:active span {
+    margin-left: 15%;
+    transition: 1s;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

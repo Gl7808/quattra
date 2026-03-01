@@ -1,0 +1,54 @@
+@use 'helpers' as *;
+
+:root {
+
+
+  --color-light-10 : #ffffff;
+  --color-light-15 : #fafafa;
+  --color-light-20 : #f5f5f5;
+  --color-light-25 : #eeeeee;
+  --color-light-30 : #e0e0e0;
+  --color-light-35 : #808080;
+  --color-light-40 : #5c5c60;
+
+  --color-dark-10 : #0c0c0c;
+  --color-dark-15 : #1a1a1a;
+  --color-dark-20 : #262626;
+  --color-dark-25 : #333333;
+  --color-dark-30 : #424242;
+  --color-dark-35 : #525252;
+  --color-dark-40 : #636363;
+
+  --color-green-10 : #3eb489;
+  --color-green-15 : #5bc49e;
+  --color-green-20 : #77d4b3;
+  --color-green-25 : #94e4c8;
+  --color-green-30 : #b1f0dd;
+  --color-green-35 : #cef5eb;
+  --color-green-40 : #ebfaf5;
+
+  --color-red-10 : #FF2400;
+  --color-red-15 : #ff472b;
+  --color-red-20 : #ff6b56;
+  --color-red-25 : #ff8f81;
+  --color-red-30 : #ffb3ad;
+  --color-red-35 : #ffd7d9;
+  --color-red-40 : #fffafa;
+
+  --color-accent : #3eb489;
+
+  --font-family-base: 'Montserrat', sans-serif;
+  --font-family-accent: 'Roboto', sans-serif;
+
+  --container-width: #{rem(1280)};
+  --container-padding-x: #{rem(100)};
+  --section-padding-y: #{rem(150)};
+
+
+  @include laptop{
+    --container-width: #{rem(1200)};
+  }
+
+  --transition-duration: 0.2s;
+
+}

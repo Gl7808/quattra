@@ -1,0 +1,39 @@
+@use '../helpers' as *;
+.hero{
+  height: 100vh;
+  width: 100%;
+  @include flex-center();
+  z-index: 2;
+
+
+
+  h1{
+    font-size: fluid(200,80);
+  }
+
+  &__title{
+    z-index: 1;
+  }
+
+}
+
+.hero__section{
+  height: 100vh;
+  width: 100%;
+  background: url("../images/slide1.png") center/110% no-repeat;
+  z-index: 1;
+  position: relative;
+
+  &:before{
+    content: '';
+    position: absolute;
+    padding-top: var(--section-padding-y);
+    top:0;
+    left: 0;
+    z-index: 0;
+    height: 100vh;
+    width: 100%;
+    background: url("../images/mask.png") center/100% no-repeat;
+  }
+
+}
