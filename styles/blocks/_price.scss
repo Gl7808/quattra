@@ -1,0 +1,142 @@
+.prices {
+  padding-block: var(--section-padding-y);
+  background-color: var(--color-dark-10);
+
+  &__title {
+    text-align: center;
+    margin-bottom: calc(var(--section-padding-y) / 2);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    @media (width <= 90.06125rem) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (width <= 63.99875rem) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.price-card {
+  background-color: var(--color-dark-20);
+  border: 1px solid var(--color-dark-30);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-duration);
+
+  @media (any-hover: hover) {
+    &:hover {
+      border-color: var(--color-accent);
+      transform: translateY(-5px);
+    }
+  }
+
+  &--accent {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 20px rgba(62, 180, 137, 0.1);
+  }
+
+  &__header {
+    border-bottom: 1px solid var(--color-dark-30);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  &__price {
+    font-family: var(--font-family-accent);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+
+    small {
+      font-size: 1rem;
+      color: var(--color-light-35);
+      font-weight: 400;
+    }
+  }
+
+  &__body {
+    flex-grow: 1;
+    margin-bottom: 2rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    li {
+      color: var(--color-light-35);
+      font-size: 1rem;
+      position: relative;
+      padding-left: 1.5rem;
+
+      &::before {
+        content: "•";
+        color: var(--color-accent);
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+
+  &__footer {
+    text-align: center;
+  }
+}
+
+/* Buttons based on your header styles */
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  padding-inline: 2rem;
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-duration);
+  width: 100%;
+
+  &--outline {
+    background: transparent;
+    border: 1px solid var(--color-light-30);
+    color: var(--color-light-10);
+
+    @media (any-hover: hover) {
+      &:hover {
+        border-color: var(--color-accent);
+        color: var(--color-accent);
+      }
+    }
+  }
+
+  &--fill {
+    background: var(--color-accent);
+    border: 1px solid var(--color-accent);
+    color: var(--color-dark-10);
+
+    @media (any-hover: hover) {
+      &:hover {
+        background: var(--color-green-15);
+        border-color: var(--color-green-15);
+      }
+    }
+  }
+}

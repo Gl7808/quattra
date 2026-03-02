@@ -20,20 +20,20 @@
 .hero__section{
   height: 100vh;
   width: 100%;
-  background: url("../images/slide1.png") center/110% no-repeat;
+  background: url("../images/slide1.png") center/cover no-repeat ;
   z-index: 1;
   position: relative;
 
-  &:before{
-    content: '';
-    position: absolute;
-    padding-top: var(--section-padding-y);
-    top:0;
-    left: 0;
-    z-index: 0;
-    height: 100vh;
-    width: 100%;
-    background: url("../images/mask.png") center/100% no-repeat;
-  }
+}
 
+
+.hero__section::after{
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: 0;
+  height: 100vh;
+  width: 100%;
+  background: url("../images/mask.png") center/cover no-repeat ;
 }
