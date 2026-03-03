@@ -1,0 +1,73 @@
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::after{
+    content: '';
+    position: absolute;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background: {
+      image: url('../images/mask.png'); // Путь к твоему фото
+      size: cover;
+      position: center;
+      z-index: 2;
+    }
+  }
+
+  // Фоновое изображение
+  background: {
+    image: url('../images/slide1.png'); // Путь к твоему фото
+    size: cover;
+    position: center;
+  }
+
+  // Затемнение фона для читаемости текста
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(12, 12, 12, 0.6); // var(--color-dark-10) + opacity
+    z-index: 1;
+  }
+
+  &__container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem; // Отступ между заголовком и кнопкой
+  }
+
+  &__title {
+    // Стили h1 уже есть в main.css, цвет var(--color-light-10)
+    margin-bottom: 0;
+    line-height: rem(60);
+  }
+}
+
+// Глобальный класс кнопки (можно вынести в _buttons.scss)
+.button {
+  display: inline-flex;
+  height: 48px;
+  padding-inline: 32px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-accent);
+  color: var(--color-light-10);
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 4px; // Или var(--border-radius-small)
+  transition-duration: var(--transition-duration);
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
