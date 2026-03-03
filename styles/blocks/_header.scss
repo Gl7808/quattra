@@ -1,6 +1,5 @@
 .header {
   padding-top: 50px;
-  position: fixed;
   width: 100%;
   z-index: 99;
 
@@ -28,7 +27,7 @@
     text-transform: uppercase;
     color: var(--color-light-10);
     font-weight: 800;
-    font-size: rem(20);
+    font-size: rem(25);
     cursor: pointer;
     font-family: 'Roboto';
     letter-spacing: rem(2);

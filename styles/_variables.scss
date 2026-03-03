@@ -41,12 +41,16 @@
   --font-family-accent: 'Roboto', sans-serif;
 
   --container-width: #{rem(1500)};
-  --container-padding-x: #{rem(100)};
-  --section-padding-y: #{rem(150)};
+  --container-padding-x: #{rem(50)};
+  --section-padding-y: #{rem(50)};
 
 
   @include laptop{
     --container-width: #{rem(1200)};
+  }
+  @include mobile{
+    --container-padding-x: #{rem(20)};
+    --section-padding-y: #{rem(20)};
   }
 
   --transition-duration: 0.2s;

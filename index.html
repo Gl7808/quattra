@@ -11,6 +11,9 @@
     <script src="./scripts/main.js" type="module" defer></script>
 </head>
 <body>
+
+
+<!--/////////////////////////////-->
     <header class="header">
         <div class="header__inner large__container">
             <a class="header__logo logo">
@@ -38,204 +41,83 @@
                     </li>
                 </ul>
             </nav>
-            <button class="header__burger-button burger-button visible-mobile">
-
+            <button class="header__burger-button burger-button visible-mobile"
+                    type="button"
+                    onclick="mobileOverlay.showModal()">
+                <span class="visually-hidden">Open navigation menu</span>
             </button>
         </div>
     </header>
-    <div class="title">
-        <span>quattra lounge</span>
-        <h1 class="title__page">
-            premium cyber arena
-        </h1>
-    </div>
-    <div class="backtitle">
-        <span>back to</span>
-        <h1 class="title__page">
-            top
-        </h1>
-    </div>
+<!--/////////////////////////////-->
 
-<main class="content">
-    <section class="section  hero__section">
-        <div class="section__body ">
-            <div class="hero">
-                <div class="hero__title">
-                    <h1>Quattra</h1>
-                    <h4>киберклуб нового поколения</h4>
-                    <button class="button">asd</button>
+
+
+    <main class="content">
+        <section class="section section--hidden-x container">sdf</section>
+    </main>
+
+<!--/////////////////////////////-->
+    <footer class="footer large__container">
+        <div class="footer__inner">
+            <div class="social">
+                <ul class="social__list">
+                    <li class="social__item">
+                        <a href="#" class="social__link">VK</a>
+                    </li>
+                    <li class="social__item">
+                        <a href="#" class="social__link">TG</a>
+                    </li>
+                    <li class="social__item">
+                        <a href="#" class="social__link">DC</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="rights visually-hidden">
+                <div class="rights__body">
+                    <span class="rights__text">
+                        Copyright © 2026. All rights reserved.
+                    </span>
                 </div>
             </div>
         </div>
-    </section>
-    <section class="section prices" id="prices">
-        <div class="container">
-            <h2 class="prices__title">Тарифы</h2>
+    </footer>
+<!--/////////////////////////////-->
 
-            <div class="prices__grid">
-                <!-- Card Standard -->
-                <div class="price-card">
-                    <div class="price-card__header">
-                        <h3>Standard</h3>
-                        <span class="price-card__price">100 ₽ <small>/ час</small></span>
-                    </div>
-                    <div class="price-card__body">
-                        <ul class="price-card__list">
-                            <li>RTX 3060</li>
-                            <li>Intel Core i5</li>
-                            <li>16 GB RAM</li>
-                            <li>144 Hz Monitor</li>
-                        </ul>
-                    </div>
-                    <div class="price-card__footer">
-                        <a href="#" class="btn btn--outline">Забронировать</a>
-                    </div>
-                </div>
 
-                <!-- Card VIP -->
-                <div class="price-card price-card--accent">
-                    <div class="price-card__header">
-                        <h3>VIP Room</h3>
-                        <span class="price-card__price">250 ₽ <small>/ час</small></span>
-                    </div>
-                    <div class="price-card__body">
-                        <ul class="price-card__list">
-                            <li>RTX 4090</li>
-                            <li>Intel Core i9</li>
-                            <li>32 GB RAM</li>
-                            <li>240 Hz Monitor</li>
-                            <li>PS5 Zone</li>
-                        </ul>
-                    </div>
-                    <div class="price-card__footer">
-                        <a href="#" class="btn btn--fill">Забронировать</a>
-                    </div>
-                </div>
 
-                <!-- Card Pack -->
-                <div class="price-card">
-                    <div class="price-card__header">
-                        <h3>Пакеты</h3>
-                        <span class="price-card__price">От 800 ₽</span>
-                    </div>
-                    <div class="price-card__body">
-                        <ul class="price-card__list">
-                            <li>Ночь (8 часов)</li>
-                            <li>День (5 часов)</li>
-                            <li>Утро (3 часа)</li>
-                        </ul>
-                    </div>
-                    <div class="price-card__footer">
-                        <a href="#" class="btn btn--outline">Подробнее</a>
-                    </div>
-                </div>
-            </div>
+
+<!--/////////////////////////////-->
+    <dialog class="mobile-overlay visible-mobile" id="mobileOverlay">
+        <form class="mobile-overlay__close-button-wrapper" method="dialog">
+            <button
+                    class="mobile-overlay__close-button cross-button"
+                    type="submit"
+            >
+                <span class="visually-hidden">Close navigation menu</span>
+            </button>
+        </form>
+        <div class="mobile-overlay__body">
+            <ul class="mobile-overlay__list">
+                <li class="mobile-overlay__item">
+                    <a class="mobile-overlay__link" href="/">Главная</a>
+                </li>
+                <li class="mobile-overlay__item">
+                    <a class="mobile-overlay__link" href="/">События</a>
+                </li>
+                <li class="mobile-overlay__item">
+                    <a class="mobile-overlay__link" href="/">Цены</a>
+                </li>
+                <li class="mobile-overlay__item">
+                    <a class="mobile-overlay__link" href="/">О нас</a>
+                </li>
+                <li class="mobile-overlay__item">
+                    <a class="mobile-overlay__link" href="/">Новости</a>
+                </li>
+                <li class="mobile-overlay__item">
+                    <a class="mobile-overlay__link" href="/">Вакансии</a>
+                </li>
+            </ul>
         </div>
-    </section>
-    <section class="section specs" id="specs">
-        <div class="container">
-            <h2 class="specs__title">Наши ПК</h2>
-
-            <div class="specs__grid">
-                <!-- PC Card 1 -->
-                <div class="spec-card">
-                    <div class="spec-card__image">
-                        <img src="../images/pc-standard.png" alt="PC Standard">
-                    </div>
-                    <div class="spec-card__body">
-                        <h3>Standard</h3>
-                        <div class="spec-card__specs">
-                            <div class="spec-item">
-                                <span class="spec-item__label">GPU</span>
-                                <span class="spec-item__value">NVIDIA RTX 3060 12GB</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">CPU</span>
-                                <span class="spec-item__value">Intel Core i5-12400F</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">RAM</span>
-                                <span class="spec-item__value">16 GB DDR4 3200MHz</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">Storage</span>
-                                <span class="spec-item__value">NVMe SSD 512GB</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">Monitor</span>
-                                <span class="spec-item__value">24" 144Hz IPS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PC Card 2 -->
-                <div class="spec-card spec-card--accent">
-                    <div class="spec-card__badge">TOP</div>
-                    <div class="spec-card__image">
-                        <img src="../images/pc-vip.png" alt="PC VIP">
-                    </div>
-                    <div class="spec-card__body">
-                        <h3>VIP</h3>
-                        <div class="spec-card__specs">
-                            <div class="spec-item">
-                                <span class="spec-item__label">GPU</span>
-                                <span class="spec-item__value">NVIDIA RTX 4090 24GB</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">CPU</span>
-                                <span class="spec-item__value">Intel Core i9-13900K</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">RAM</span>
-                                <span class="spec-item__value">32 GB DDR5 6000MHz</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">Storage</span>
-                                <span class="spec-item__value">NVMe SSD 2TB</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">Monitor</span>
-                                <span class="spec-item__value">27" 240Hz OLED</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PC Card 3 -->
-                <div class="spec-card">
-                    <div class="spec-card__image">
-                        <img src="../images/pc-bootcamp.png" alt="PC Bootcamp">
-                    </div>
-                    <div class="spec-card__body">
-                        <h3>Bootcamp</h3>
-                        <div class="spec-card__specs">
-                            <div class="spec-item">
-                                <span class="spec-item__label">GPU</span>
-                                <span class="spec-item__value">NVIDIA RTX 3070 Ti</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">CPU</span>
-                                <span class="spec-item__value">AMD Ryzen 7 5800X</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">RAM</span>
-                                <span class="spec-item__value">16 GB DDR4 3600MHz</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">Storage</span>
-                                <span class="spec-item__value">NVMe SSD 1TB</span>
-                            </div>
-                            <div class="spec-item">
-                                <span class="spec-item__label">Monitor</span>
-                                <span class="spec-item__value">25" 165Hz IPS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+    </dialog>
 </body>
 </html>
