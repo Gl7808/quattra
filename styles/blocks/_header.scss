@@ -2,7 +2,9 @@
   padding-top: 50px;
   width: 100%;
   z-index: 99;
-  position: fixed;
+  position: absolute;
+  top: 0;
+  left: 0;
 
   @include tablet {
     padding-top: 30px;

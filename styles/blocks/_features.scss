@@ -1,0 +1,111 @@
+.features {
+  min-height: 75vh; // 75% экрана
+  display: flex;
+  align-items: center;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+
+    @media (width <= 63.99875rem) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__subtitle {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  &__title {
+    // Наследует стили h2 из main.css
+    margin-bottom: 0;
+  }
+
+  &__text {
+    color: var(--color-light-35);
+    max-width: 50ch;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  &__btn {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--color-dark-30);
+    background: transparent;
+    color: var(--color-light-10);
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+  }
+
+  &__pagination {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+
+
+  }
+
+  &__track {
+    display: flex;
+    transition: transform 0.4s ease;
+  }
+
+  &__slide {
+    min-width: 100%;
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    &:before{
+      content: '';
+      position: absolute;
+      left:0;
+      top:0;
+      width: 100%;
+      height: 100%;
+      background: {
+        image: url('../images/mask.png'); // Путь к твоему фото
+        size: cover;
+        position: center;
+      }}
+
+
+    &.active {
+      opacity: 1;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+
+    }
+  }
+}

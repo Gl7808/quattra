@@ -1,0 +1,14 @@
+.light{
+  position: fixed;
+  &::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: rem(150);
+    height: rem(150);
+    background-color: var(--color-accent);
+    filter: blur(300px);
+
+  }
+}

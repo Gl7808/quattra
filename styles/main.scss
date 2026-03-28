@@ -5,6 +5,7 @@
 @use "globals";
 @use 'helpers' as *;
 
+
 @import
 "blocks/header",
 "blocks/mobile-overlay",
@@ -14,4 +15,10 @@
 "blocks/rigths",
 "blocks/section",
 "blocks/hero",
+"blocks/features",
+"blocks/carousel",
+"blocks/cards",
+"blocks/faq",
+"blocks/light",
+"blocks/map",
 "blocks/burger-button";

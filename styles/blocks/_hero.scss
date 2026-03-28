@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
 
-  &::after{
+  &::before{
     content: '';
     position: absolute;
     left:0;
@@ -16,7 +16,6 @@
       image: url('../images/mask.png'); // Путь к твоему фото
       size: cover;
       position: center;
-      z-index: 2;
     }
   }
 

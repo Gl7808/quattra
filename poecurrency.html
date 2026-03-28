@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PoE Currency Tracker</title>
+  <style>
+    :root { --bg: #1a1a2e; --card: #16213e; --text: #eee; --accent: #e94560; --muted: #888; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 20px; line-height: 1.5; }
+    .container { max-width: 900px; margin: 0 auto; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: var(--card); border-radius: 10px; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+    h1 { font-size: 1.4rem; }
+    .controls { display: flex; gap: 10px; flex-wrap: wrap; }
+    select, button { padding: 8px 14px; border: none; border-radius: 6px; background: #0f3460; color: white; cursor: pointer; font-size: 0.95rem; }
+    select:hover, button:hover { background: #1a4a7a; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .status { font-size: 0.9rem; color: var(--muted); margin: 10px 0; }
+    .error { background: #4a2030; color: #ff6b8a; padding: 12px; border-radius: 8px; margin: 10px 0; display: none; }
+    .error.show { display: block; }
+    table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 10px; overflow: hidden; }
+    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #0f3460; }
+    th { background: #0f3460; font-weight: 600; }
+    tr:hover { background: #1a2a4a; }
+    .price { font-family: monospace; font-weight: 500; }
+    .chaos { color: #7ec8e3; }
+    .divine { color: #f4d03f; }
+    .proxy-hint { font-size: 0.85rem; color: var(--muted); margin-top: 5px; }
+    @media (max-width: 600px) { th, td { padding: 10px; font-size: 0.9rem; } header { flex-direction: column; align-items: flex-start; } }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>💰 PoE Currency Prices</h1>
+    <div class="controls">
+      <select id="leagueSelect">
+        <option value="Settlers">Settlers</option>
+        <option value="Standard">Standard</option>
+        <option value="Hardcore">Hardcore</option>
+      </select>
+      <select id="typeSelect">
+        <option value="Currency">Currency</option>
+        <option value="Fragment">Fragment</option>
+      </select>
+      <button id="refreshBtn" onclick="loadPrices()">🔄 Обновить</button>
+    </div>
+  </header>
+
+  <div id="error" class="error"></div>
+  <div class="proxy-hint">⚠️ Если не грузится — открой файл через локальный сервер (Live Server / python -m http.server)</div>
+  <div id="status" class="status">Загрузка...</div>
+
+  <table id="table" style="display:none">
+    <thead>
+    <tr>
+      <th>Валюта</th>
+      <th>Цена (Chaos)</th>
+      <th>Цена (Divine)*</th>
+      <th>Изменение</th>
+    </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<script>
+  const CORS_PROXIES = [
+    'https://api.allorigins.win/raw?url=',
+    'https://corsproxy.io/?',
+    'https://api.codetabs.com/v1/proxy?quest='
+  ];
+  const API_BASE = 'https://poe.ninja/api/data/currencyoverview';
+
+  const tbody = document.getElementById('tbody');
+  const table = document.getElementById('table');
+  const status = document.getElementById('status');
+  const errorBox = document.getElementById('error');
+  const leagueSelect = document.getElementById('leagueSelect');
+  const typeSelect = document.getElementById('typeSelect');
+  const refreshBtn = document.getElementById('refreshBtn');
+
+  let divineOrbChaosPrice = 1;
+
+  async function fetchWithProxy(url, proxyIndex = 0) {
+    if (proxyIndex >= CORS_PROXIES.length) throw new Error('Все прокси не сработали');
+
+    const proxyUrl = CORS_PROXIES[proxyIndex] + encodeURIComponent(url);
+    const res = await fetch(proxyUrl);
+
+    if (!res.ok) {
+      // Пробуем следующий прокси при ошибке
+      return fetchWithProxy(url, proxyIndex + 1);
+    }
+    return res;
+  }
+
+  async function loadPrices() {
+    const league = leagueSelect.value;
+    const type = typeSelect.value;
+
+    setLoading(true);
+    hideError();
+
+    try {
+      const apiUrl = `${API_BASE}?league=${encodeURIComponent(league)}&type=${encodeURIComponent(type)}`;
+      const res = await fetchWithProxy(apiUrl);
+      const data = await res.json();
+      renderTable(data, league);
+
+    } catch (err) {
+      showError(err.message + '. Попробуй открыть файл через локальный сервер.');
+      console.error('Fetch error:', err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  function renderTable(data, league) {
+    tbody.innerHTML = '';
+    const divineLine = data.lines?.find(l => l.currencyTypeName === 'Divine Orb');
+    divineOrbChaosPrice = divineLine?.chaosEquivalent || 1;
+
+    if (!data.lines?.length) {
+      status.textContent = 'Нет данных для отображения';
+      table.style.display = 'none';
+      return;
+    }
+
+    const sorted = [...data.lines].sort((a, b) => (b.chaosEquivalent || 0) - (a.chaosEquivalent || 0));
+
+    for (const item of sorted) {
+      const chaosPrice = item.chaosEquivalent?.toFixed(2) || '—';
+      const divinePrice = item.chaosEquivalent ? (item.chaosEquivalent / divineOrbChaosPrice).toFixed(4) : '—';
+      const change = item.details?.change ? `${item.details.change > 0 ? '+' : ''}${item.details.change}%` : '—';
+
+      const row = document.createElement('tr');
+      row.innerHTML = `
+          <td><strong>${item.currencyTypeName}</strong></td>
+          <td class="price chaos">${chaosPrice} 🔵</td>
+          <td class="price divine">${divinePrice} ✨</td>
+          <td>${change}</td>
+        `;
+      tbody.appendChild(row);
+    }
+
+    status.textContent = `Лига: ${league} • Обновлено: ${new Date().toLocaleTimeString()}`;
+    table.style.display = 'table';
+  }
+
+  function setLoading(isLoading) {
+    refreshBtn.disabled = isLoading;
+    if (isLoading) {
+      status.textContent = 'Загрузка...';
+      table.style.display = 'none';
+    }
+  }
+
+  function showError(msg) {
+    errorBox.textContent = `❌ ${msg}`;
+    errorBox.classList.add('show');
+    status.textContent = '';
+  }
+
+  function hideError() {
+    errorBox.classList.remove('show');
+  }
+
+  document.addEventListener('DOMContentLoaded', loadPrices);
+</script>
+</body>
+</html>
