@@ -37,7 +37,7 @@
       <select id="leagueSelect">
         <option value="Settlers">Settlers</option>
         <option value="Standard">Standard</option>
-        <option value="Hardcore">Hardcore</option>
+        <option value="Mirage">Mirage</option>
       </select>
       <select id="typeSelect">
         <option value="Currency">Currency</option>
@@ -66,9 +66,9 @@
 
 <script>
   const CORS_PROXIES = [
-    'https://api.allorigins.win/raw?url=',
-    'https://corsproxy.io/?',
-    'https://api.codetabs.com/v1/proxy?quest='
+    'https://cors.bridged.cc/',           // Часто работает с GitHub Pages
+    'https://api.codetabs.com/v1/proxy?quest=',
+    'https://proxy.cors.sh/'              // Требует заголовок, но иногда работает
   ];
   const API_BASE = 'https://poe.ninja/api/data/currencyoverview';
 
