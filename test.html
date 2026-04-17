@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quattra | Ресторан</title>
+  <style>
+    :root {
+      --bg-light: #ffffff;
+      --bg-dark: #0a0a0a;
+      --text-main: #000000;
+      --text-muted: #666666;
+      --line: #e5e5e5;
+      --font-main: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 2rem;
+      --spacing-lg: 4rem;
+      --spacing-xl: 6rem;
+      --max-width: 1400px;
+      --nav-height: 60px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-main);
+      background: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--bg-dark);
+      color: #fff;
+      text-align: center;
+      padding: var(--spacing-md);
+      position: relative;
+    }
+    .hero__brand {
+      font-size: 0.9rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      margin-bottom: var(--spacing-sm);
+      opacity: 0.7;
+    }
+    .hero__title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 200;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: var(--spacing-sm);
+    }
+    .hero__subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      max-width: 600px;
+      opacity: 0.85;
+      margin-bottom: var(--spacing-md);
+    }
+    .hero__cta {
+      display: inline-block;
+      padding: 0.8rem 2.2rem;
+      border: 1px solid #fff;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: background 0.3s, color 0.3s;
+    }
+    .hero__cta:hover { background: #fff; color: #000; }
+    .hero__scroll {
+      position: absolute;
+      bottom: var(--spacing-md);
+      opacity: 0.4;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* STICKY NAV */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      z-index: 100;
+      padding: 0;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+    }
+    .sticky-nav__inner {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--spacing-md);
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-xs);
+      overflow-x: auto;
+      scrollbar-width: none; /* Firefox */
+    }
+    .sticky-nav__inner::-webkit-scrollbar { display: none; }
+
+    .sticky-nav__link {
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.5rem 0.8rem;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .sticky-nav__link:hover, .sticky-nav__link.active {
+      color: var(--text-main);
+      border-color: var(--text-main);
+      background: rgba(0,0,0,0.02);
+    }
+
+    /* MENU CONTAINER */
+    .menu-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--spacing-lg) var(--spacing-md) var(--spacing-xl);
+    }
+    .menu__header {
+      text-align: center;
+      margin-bottom: var(--spacing-lg);
+    }
+    .menu__title {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .menu__divider {
+      width: 40px;
+      height: 1px;
+      background: var(--text-main);
+      margin: var(--spacing-sm) auto 0;
+    }
+
+    /* GRID LAYOUT */
+    .menu__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-lg);
+    }
+
+    /* SECTIONS */
+    .menu__section {
+      scroll-margin-top: calc(var(--nav-height) + 20px); /* Точный отступ под меню */
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: var(--spacing-md);
+      opacity: 0;
+      transform: translateY(15px);
+      animation: fadeIn 0.5s ease forwards;
+      transition: box-shadow 0.3s ease;
+    }
+    .menu__section:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.04); }
+    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+    .menu__section-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding-bottom: var(--spacing-xs);
+      border-bottom: 1px solid var(--text-main);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .menu__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: var(--spacing-sm);
+      margin-bottom: var(--spacing-sm);
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .menu__item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .menu__item-info { flex: 1; padding-right: var(--spacing-sm); }
+    .menu__item-name-row { display: flex; align-items: baseline; gap: 0.4rem; flex-wrap: wrap; }
+    .menu__item-name { font-weight: 500; font-size: 1rem; letter-spacing: 0.01em; }
+    .menu__item-weight { font-size: 0.78rem; color: var(--text-muted); font-weight: 400; }
+    .menu__item-desc { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; margin-top: 3px; }
+    .menu__item-price { font-weight: 500; white-space: nowrap; font-size: 0.95rem; }
+
+    /* QUICK NAV SIDE */
+    .quick-nav {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      z-index: 50;
+    }
+    .quick-nav__link {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      opacity: 0.4;
+      transition: opacity 0.3s, color 0.3s;
+      position: relative;
+      cursor: pointer;
+    }
+    .quick-nav__link::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 5px;
+      background: transparent;
+      border: 1px solid var(--text-muted);
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+    .quick-nav__link.active, .quick-nav__link:hover {
+      opacity: 1;
+      color: var(--text-main);
+    }
+    .quick-nav__link.active::before, .quick-nav__link:hover::before {
+      background: var(--text-main);
+      border-color: var(--text-main);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: var(--spacing-md);
+      font-size: 0.75rem;
+      opacity: 0.5;
+      border-top: 1px solid var(--line);
+      margin-top: var(--spacing-xl);
+    }
+
+    @media (max-width: 1024px) {
+      .menu__grid { grid-template-columns: 1fr; }
+      .quick-nav { display: none; }
+    }
+    @media (max-width: 600px) {
+      .sticky-nav__link { font-size: 0.75rem; padding: 0.4rem 0.6rem; }
+      .menu__item { flex-direction: column; gap: 0.2rem; }
+      .menu__item-price { align-self: flex-start; opacity: 0.8; }
+      :root { --nav-height: 50px; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero__brand">Quattra</div>
+  <h1 class="hero__title">Ресторан</h1>
+  <p class="hero__subtitle">Монохромная эстетика, авторская подача и акцент на чистоте вкуса. Пространство для тех, кто ценит детали.</p>
+  <a href="#menu" class="hero__cta">Меню</a>
+  <span class="hero__scroll">↓</span>
+</section>
+
+<nav class="sticky-nav" id="stickyNav"></nav>
+<nav class="quick-nav" id="quickNav"></nav>
+
+<main class="menu-wrapper" id="menu">
+  <header class="menu__header">
+    <h2 class="menu__title">Меню</h2>
+    <div class="menu__divider"></div>
+  </header>
+  <div class="menu__grid" id="menuGrid">
+    <!-- JS injects sections here -->
+  </div>
+</main>
+
+<footer>
+  © 2026 Quattra. Все права защищены.
+</footer>
+
+<script>
+  // Данные с граммовками
+  const MENU_DATA = {
+    "Закуски": [
+      { name: "Тартар из тунца", weight: "220 г", desc: "Авокадо, юзу, черный кунжут, микрозелень", price: "850 ₽" },
+      { name: "Брускетта со страчателлой", weight: "180 г", desc: "Томаты конфи, базилик, оливковое масло", price: "620 ₽" },
+      { name: "Хрустящие баклажаны", weight: "190 г", desc: "Соус понзу, кунжут, свежий кориандр", price: "580 ₽" },
+      { name: "Карпаччо из говядины", weight: "160 г", desc: "Руккола, пармезан, каперсы, трюфельное масло", price: "920 ₽" },
+      { name: "Тарталетки с муссом из лосося", weight: "140 г", desc: "Сливочный сыр, красная икра, укроп", price: "720 ₽" },
+      { name: "Крокеты с рикоттой", weight: "170 г", desc: "Шпинат, кедровые орехи, лимонная цедра", price: "540 ₽" },
+      { name: "Устрицы (6 шт)", weight: "300 г", desc: "Свежие, подаются с лимоном и соусом миньонет", price: "1 800 ₽" },
+      { name: "Фуа-гра", weight: "90 г", desc: "Паштет из гусиной печени, бриошь, луковый конфитюр", price: "1 200 ₽" }
+    ],
+    "Салаты": [
+      { name: "Цезарь с креветками", weight: "280 г", desc: "Романо, анчоусы, пармезан, фирменный соус", price: "890 ₽" },
+      { name: "Нисуаз", weight: "310 г", desc: "Тунец, стручковая фасоль, яйцо, оливки", price: "950 ₽" },
+      { name: "Бурата с томатами", weight: "260 г", desc: "Мини-томаты, песто, кедровый орех, бальзамик", price: "820 ₽" },
+      { name: "Теплый с уткой", weight: "290 г", desc: "Филе утки, руккола, груша, гранат", price: "980 ₽" },
+      { name: "Греческий", weight: "270 г", desc: "Фета, огурцы, томаты, оливки каламата, орегано", price: "680 ₽" },
+      { name: "Капрезе", weight: "240 г", desc: "Моцарелла буффало, томаты, базилик, бальзамический крем", price: "750 ₽" },
+      { name: "С крабом и авокадо", weight: "230 г", desc: "Мясо краба, авокадо, манго, лаймовая заправка", price: "1 100 ₽" },
+      { name: "Свекла с козьим сыром", weight: "250 г", desc: "Запеченная свекла, козий сыр, грецкие орехи, мед", price: "720 ₽" }
+    ],
+    "Супы": [
+      { name: "Том Ям", weight: "350 мл", desc: "Креветки, грибы, лемонграсс, кокосовое молоко", price: "680 ₽" },
+      { name: "Французский луковый", weight: "300 мл", desc: "Карамелизированный лук, грюйер, гренки", price: "520 ₽" },
+      { name: "Крем-суп из белых грибов", weight: "320 мл", desc: "Белые грибы, сливки, трюфельное масло", price: "590 ₽" },
+      { name: "Гаспачо", weight: "300 мл", desc: "Холодный томатный суп, огурец, перец, базилик", price: "480 ₽" },
+      { name: "Борщ", weight: "380 мл", desc: "Говядина, свекла, сметана, чесночные пампушки", price: "550 ₽" },
+      { name: "Минестроне", weight: "340 мл", desc: "Овощи, паста, пармезан, базилик", price: "490 ₽" }
+    ],
+    "Основные блюда": [
+      { name: "Стейк рибай", weight: "350 г", desc: "Гриль, розмарин, картофельное пюре, соус демиглас", price: "1 900 ₽" },
+      { name: "Ризотто с лесными грибами", weight: "320 г", desc: "Пармезан, трюфельное масло, эспрессо-дроп", price: "1 200 ₽" },
+      { name: "Филе лосося", weight: "280 г", desc: "Су-вид, спаржа, голландский соус, лимонная цедра", price: "1 650 ₽" },
+      { name: "Паста с морепродуктами", weight: "360 г", desc: "Креветки, мидии, кальмар, томатный бульон", price: "1 450 ₽" },
+      { name: "Каре ягненка", weight: "310 г", desc: "Картофель дофинуа, мятный соус, запеченные томаты", price: "2 100 ₽" },
+      { name: "Утиная грудка", weight: "290 г", desc: "Апельсиновый соус, картофель гратен, стручковая фасоль", price: "1 750 ₽" },
+      { name: "Осьминог на гриле", weight: "270 г", desc: "Пюре из цветной капусты, чоризо, паприка", price: "1 850 ₽" },
+      { name: "Паста Карбонара", weight: "340 г", desc: "Гуанчиале, пекорино романо, яйцо, черный перец", price: "980 ₽" },
+      { name: "Бефстроганов", weight: "330 г", desc: "Говядина, шампиньоны, сметанный соус, картофель", price: "1 350 ₽" },
+      { name: "Дорадо на гриле", weight: "300 г", desc: "Овощи гриль, лимонно-масляный соус, руккола", price: "1 600 ₽" },
+      { name: "Рибай на кости", weight: "550 г", desc: "Сухое созревание 45 дней, розмарин, чеснок", price: "3 200 ₽" }
+    ],
+    "Гарниры": [
+      { name: "Картофельное пюре", weight: "180 г", desc: "Сливочное масло, трюфель", price: "350 ₽" },
+      { name: "Овощи гриль", weight: "220 г", desc: "Кабачок, баклажан, перец, томаты", price: "420 ₽" },
+      { name: "Спаржа", weight: "150 г", desc: "На пару, голландский соус", price: "480 ₽" },
+      { name: "Рис жасмин", weight: "160 г", desc: "Свежемолотый черный перец, морская соль", price: "280 ₽" },
+      { name: "Картофель фри", weight: "190 г", desc: "С розмарином и чесноком", price: "320 ₽" },
+      { name: "Грибы соте", weight: "170 г", desc: "Шампиньоны, сливочное масло, петрушка", price: "390 ₽" }
+    ],
+    "Десерты": [
+      { name: "Тирамису", weight: "140 г", desc: "Классический рецепт, маскарпоне, эспрессо, какао", price: "650 ₽" },
+      { name: "Шоколадный фондан", weight: "160 г", desc: "70% какао, ванильное мороженое, морская соль", price: "700 ₽" },
+      { name: "Панна-котта", weight: "130 г", desc: "Ягодный кули, миндальные лепестки, мята", price: "550 ₽" },
+      { name: "Чизкейк Нью-Йорк", weight: "150 г", desc: "Классический, ягодный соус", price: "620 ₽" },
+      { name: "Крем-брюле", weight: "120 г", desc: "Ваниль, карамелизированная корочка", price: "580 ₽" },
+      { name: "Тарт татен", weight: "180 г", desc: "Карамелизированные яблоки, слоеное тесто, мороженое", price: "640 ₽" },
+      { name: "Шоколадный торт", weight: "165 г", desc: "Темный шоколад, вишневый ликер, взбитые сливки", price: "680 ₽" },
+      { name: "Сорбет", weight: "110 г", desc: "Манго-маракуйя или лимон-базилик", price: "420 ₽" },
+      { name: "Профитроли", weight: "190 г", desc: "Заварное тесто, крем патисьер, шоколад", price: "590 ₽" }
+    ],
+    "Напитки": [
+      { name: "Эспрессо", weight: "30 мл", desc: "Зерна specialty класса", price: "250 ₽" },
+      { name: "Американо", weight: "200 мл", desc: "Зерна specialty класса", price: "300 ₽" },
+      { name: "Капучино / Латте", weight: "250 мл", desc: "Молоко 3.2%, эспрессо", price: "380 ₽" },
+      { name: "Свежевыжатый сок", weight: "300 мл", desc: "Апельсин, яблоко, морковь, свекла", price: "450 ₽" },
+      { name: "Лимонад огурец-базилик", weight: "400 мл", desc: "Свежий огурец, базилик, лайм, газировка", price: "380 ₽" },
+      { name: "Лимонад лайм-имбирь", weight: "400 мл", desc: "Свежий имбирь, лайм, мята, мед", price: "380 ₽" },
+      { name: "Чай черный / зеленый", weight: "350 мл", desc: "Листовой, на выбор", price: "320 ₽" },
+      { name: "Чай улун", weight: "450 мл", desc: "Молочный улун, пролив", price: "420 ₽" },
+      { name: "Минеральная вода", weight: "750 мл", desc: "San Pellegrino / Acqua Panna", price: "450 ₽" },
+      { name: "Вино бокал", weight: "150 мл", desc: "Белое / красное / розе, на выбор", price: "550 ₽" }
+    ]
+  };
+
+  const slugify = text => text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '');
+  const categories = Object.keys(MENU_DATA);
+
+  function renderMenu() {
+    const grid = document.getElementById('menuGrid');
+    const stickyNav = document.getElementById('stickyNav');
+    const quickNav = document.getElementById('quickNav');
+
+    categories.forEach((cat, index) => {
+      const id = slugify(cat);
+
+      // Секция меню
+      const section = document.createElement('section');
+      section.id = id;
+      section.className = 'menu__section';
+      section.style.animationDelay = `${index * 0.08}s`;
+
+      const itemsHTML = MENU_DATA[cat].map(item => `
+                    <div class="menu__item">
+                        <div class="menu__item-info">
+                            <div class="menu__item-name-row">
+                                <span class="menu__item-name">${item.name}</span>
+                                <span class="menu__item-weight">${item.weight}</span>
+                            </div>
+                            <span class="menu__item-desc">${item.desc}</span>
+                        </div>
+                        <span class="menu__item-price">${item.price}</span>
+                    </div>
+                `).join('');
+
+      section.innerHTML = `
+                    <h3 class="menu__section-title">${cat}</h3>
+                    <div class="menu__items">${itemsHTML}</div>
+                `;
+      grid.appendChild(section);
+
+      // Навигация (используем <a> для надежной работы якорей)
+      const navLinkHTML = `<a href="#${id}" class="sticky-nav__link" data-target="${id}">${cat}</a>`;
+      const quickLinkHTML = `<a href="#${id}" class="quick-nav__link" data-target="${id}">${cat}</a>`;
+
+      stickyNav.insertAdjacentHTML('beforeend', `<nav class="sticky-nav__inner">${navLinkHTML}</nav>`);
+      // Перемещаем .sticky-nav__inner наружу, если он создавался многократно (исправление логики)
+      if(index === 0) {
+        stickyNav.innerHTML = `<nav class="sticky-nav__inner">${navLinkHTML}`;
+      } else {
+        document.querySelector('.sticky-nav__inner').insertAdjacentHTML('beforeend', navLinkHTML);
+      }
+
+      quickNav.insertAdjacentHTML('beforeend', quickLinkHTML);
+    });
+
+    // Фикс структуры sticky nav (выносим inner в корень stickyNav)
+    const innerNav = document.querySelector('.sticky-nav__inner');
+    stickyNav.innerHTML = '';
+    stickyNav.appendChild(innerNav);
+
+    initScrollObserver();
+  }
+
+  function initScrollObserver() {
+    const sections = document.querySelectorAll('.menu__section');
+    const navLinks = document.querySelectorAll('[data-target]');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const activeId = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.dataset.target === activeId);
+          });
+        }
+      });
+    }, {
+      threshold: 0,
+      rootMargin: '-80px 0px -60% 0px' // Срабатывает, когда секция в верхней части экрана
+    });
+
+    sections.forEach(sec => observer.observe(sec));
+  }
+
+  document.addEventListener('DOMContentLoaded', renderMenu);
+</script>
+</body>
+</html>

@@ -8,17 +8,12 @@
 
 @import
 "blocks/header",
-"blocks/mobile-overlay",
-"blocks/cross-button",
-"blocks/footer",
-"blocks/social",
-"blocks/rigths",
-"blocks/section",
 "blocks/hero",
-"blocks/features",
-"blocks/carousel",
-"blocks/cards",
-"blocks/faq",
-"blocks/light",
-"blocks/map",
-"blocks/burger-button";
+"blocks/footer";
+
+
+
+
+// CYBER_CLUB
+@import
+"blocks/cyber/cyber-hero";

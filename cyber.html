@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cyber</title>
+  <link rel="stylesheet" href="./styles/main.css">
+  <script src="./scripts/main.js" type="module" defer></script>
+</head>
+<body>
+<section class="cyber-hero">
+  <div class="cyber-hero__slider">
+    <!-- Слайд 1: Таймер турнира -->
+    <div class="cyber-hero__slide cyber-hero__slide--active" data-slide="0">
+      <div class="cyber-hero__bg">
+        <img src="https://i.ytimg.com/vi/nGrMgg1J0sY/maxresdefault.jpg" alt="Tournament" loading="lazy">
+        <div class="cyber-hero__overlay"></div>
+      </div>
+      <div class="container">
+        <div class="cyber-hero__content">
+          <span class="cyber-hero__tag">Скоро</span>
+          <div class="cyber-hero__timer" id="tournament-timer">
+            <div class="cyber-hero__timer-item">
+              <span class="cyber-hero__timer-value" data-days>00</span>
+              <span class="cyber-hero__timer-label">Дней</span>
+            </div>
+            <div class="cyber-hero__timer-separator">:</div>
+            <div class="cyber-hero__timer-item">
+              <span class="cyber-hero__timer-value" data-hours>00</span>
+              <span class="cyber-hero__timer-label">Часов</span>
+            </div>
+            <div class="cyber-hero__timer-separator">:</div>
+            <div class="cyber-hero__timer-item">
+              <span class="cyber-hero__timer-value" data-minutes>00</span>
+              <span class="cyber-hero__timer-label">Минут</span>
+            </div>
+            <div class="cyber-hero__timer-separator">:</div>
+            <div class="cyber-hero__timer-item">
+              <span class="cyber-hero__timer-value" data-seconds>00</span>
+              <span class="cyber-hero__timer-label">Секунд</span>
+            </div>
+          </div>
+
+          <p class="cyber-hero__subtitle">5v5 • Призовой фонд 500,000₽ • Регистрация открыта</p>
+
+          <div class="cyber-hero__actions">
+            <a href="#registration" class="btn btn--primary">Регистрация</a>
+            <a href="#details" class="btn btn--outline">Подробнее</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Слайд 2 -->
+    <div class="cyber-hero__slide" data-slide="1">
+      <div class="cyber-hero__bg">
+        <img src="https://avatars.mds.yandex.net/i?id=d66c1eaf504b8abce0bb1e1edf1f5b77_l-4396079-images-thumbs&n=13" alt="Gaming Zone" loading="lazy">
+        <div class="cyber-hero__overlay"></div>
+      </div>
+      <div class="container">
+        <div class="cyber-hero__content">
+          <span class="cyber-hero__tag">CYBER CLUB</span>
+          <h1 class="cyber-hero__title">Премиум железо</h1>
+          <p class="cyber-hero__subtitle">RTX 4090 • Intel i9-14900K • 240Hz мониторы</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Слайд 3 -->
+    <div class="cyber-hero__slide" data-slide="2">
+      <div class="cyber-hero__bg">
+        <img src="https://avatars.mds.yandex.net/get-altay/6319069/2a000001817178149a1e49d7d61d56ed114c/XXL_height" alt="Lounge Zone" loading="lazy">
+        <div class="cyber-hero__overlay"></div>
+      </div>
+      <div class="container">
+        <div class="cyber-hero__content">
+          <span class="cyber-hero__tag">CYBER CLUB</span>
+          <h1 class="cyber-hero__title">Комфортные зоны</h1>
+          <p class="cyber-hero__subtitle">VIP комнаты • Зоны отдыха • Бар</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Слайд 4 -->
+    <div class="cyber-hero__slide" data-slide="3">
+      <div class="cyber-hero__bg">
+        <img src="/assets/images/cyber-slide-04.jpg" alt="Events" loading="lazy">
+        <div class="cyber-hero__overlay"></div>
+      </div>
+      <div class="container">
+        <div class="cyber-hero__content">
+          <span class="cyber-hero__tag">CYBER CLUB</span>
+          <h1 class="cyber-hero__title">События и ивенты</h1>
+          <p class="cyber-hero__subtitle">Еженедельные турниры • Ланч-сессии • Стримы</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Навигация -->
+    <div class="cyber-hero__nav">
+      <div class="cyber-hero__nav-bars">
+        <button class="cyber-hero__nav-bar cyber-hero__nav-bar--active" data-nav="0" aria-label="Slide 1"></button>
+        <button class="cyber-hero__nav-bar" data-nav="1" aria-label="Slide 2"></button>
+        <button class="cyber-hero__nav-bar" data-nav="2" aria-label="Slide 3"></button>
+        <button class="cyber-hero__nav-bar" data-nav="3" aria-label="Slide 4"></button>
+      </div>
+      <div class="cyber-hero__nav-counter">
+        <span class="cyber-hero__nav-current">01</span>
+        <span class="cyber-hero__nav-divider">/</span>
+        <span class="cyber-hero__nav-total">04</span>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

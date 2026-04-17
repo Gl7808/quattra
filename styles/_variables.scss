@@ -35,10 +35,12 @@
   --color-red-35 : #ffd7d9;
   --color-red-40 : #fffafa;
 
-  --color-accent : #3eb489;
+  --color-accent-lounge : #3eb489;
+  --color-accent-game : #fd1920;
 
   --font-family-base: 'Montserrat', sans-serif;
   --font-family-accent: 'Roboto', sans-serif;
+  --font-family-strict : 'Manrope', system-ui;
 
   --container-width: #{rem(1500)};
   --container-padding-x: #{rem(50)};

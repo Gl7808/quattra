@@ -1,14 +1,6 @@
 .footer{
-  position: fixed;
-  bottom: rem(30);
-  width: 100%;
-  left:50%;
-  transform: translate(-50%);
-  z-index: 2;
 
   &__inner{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+
   }
 }
