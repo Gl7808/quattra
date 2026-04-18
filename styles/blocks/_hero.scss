@@ -14,17 +14,34 @@
   &__content{
     width: 100%;
     height: 100%;
-    @include flex-center();
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
   }
   &__title{
     z-index: 3;
-    font-size: rem(60);
+    font-size: rem(80);
     color: var(--color-accent-game);
     font-family: var(--font-family-strict);
     font-weight: 800;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: rem(4);
+    text-shadow: 0 0 40px rgba(255, 22, 104, 0.5);
+  }
+
+  &__subtitle {
+    font-size: rem(20);
+    color: var(--color-dark-35);
+    text-align: center;
+    margin-top: rem(20);
+    margin-bottom: rem(40);
+    max-width: rem(600);
+  }
+
+  &__buttons {
+    display: flex;
+    gap: rem(20);
   }
 }
-
-

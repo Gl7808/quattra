@@ -1,0 +1,227 @@
+.hardware {
+  min-height: 100vh;
+  position: relative;
+  padding: rem(100) 0;
+
+  &__inner {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+.hardware-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: rem(30);
+}
+
+.hardware-item {
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.6) 0%, rgba(10, 10, 10, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-r-s);
+  padding: rem(40) rem(30);
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 22, 104, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255, 22, 104, 0.4);
+    box-shadow: 0 20px 60px rgba(255, 22, 104, 0.15);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .hardware-item__icon svg {
+      transform: scale(1.1) rotate(5deg);
+      filter: drop-shadow(0 0 20px rgba(255, 22, 104, 0.6));
+    }
+  }
+
+  &__icon {
+    position: relative;
+    z-index: 2;
+    margin-bottom: rem(25);
+
+    svg {
+      transition: all 0.4s ease;
+    }
+  }
+
+  &__title {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-family-strict);
+    font-size: rem(22);
+    color: var(--color-light-10);
+    margin-bottom: rem(15);
+    text-transform: uppercase;
+  }
+
+  &__description {
+    position: relative;
+    z-index: 2;
+    font-size: rem(14);
+    color: var(--color-dark-35);
+    line-height: 1.6;
+  }
+}
+
+.question {
+  min-height: 100vh;
+  position: relative;
+  padding: rem(100) 0;
+
+  &__inner {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+.faq-list {
+  max-width: rem(900);
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: rem(20);
+  background: linear-gradient(145deg, rgba(26, 26, 26, 0.6) 0%, rgba(10, 10, 10, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-r-s);
+  overflow: hidden;
+  transition: all 0.4s ease;
+
+  &:hover {
+    border-color: rgba(255, 22, 104, 0.3);
+  }
+
+  &__header {
+    width: 100%;
+    padding: rem(25) rem(30);
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 22, 104, 0.05);
+    }
+  }
+
+  &__question {
+    font-family: var(--font-family-strict);
+    font-size: rem(18);
+    color: var(--color-light-10);
+    text-transform: uppercase;
+    text-align: left;
+  }
+
+  &__icon {
+    font-size: rem(30);
+    color: var(--color-accent-game);
+    transition: transform 0.4s ease;
+    line-height: 1;
+  }
+
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+
+    p {
+      padding: 0 rem(30) rem(25);
+      font-size: rem(15);
+      color: var(--color-dark-35);
+      line-height: 1.7;
+    }
+  }
+
+  &.active {
+    border-color: rgba(255, 22, 104, 0.4);
+
+    .faq-item__icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-item__content {
+      max-height: rem(200);
+    }
+  }
+}
+
+.hero-section {
+  position: relative;
+}
+
+.tournament-section,
+.hardware-section,
+.question-section {
+  position: relative;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: rem(40);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(8);
+  z-index: 10;
+}
+
+.scroll-indicator span {
+  width: rem(6);
+  height: rem(6);
+  border-radius: 50%;
+  background: var(--color-accent-game);
+  animation: scroll-bounce 2s infinite;
+}
+
+.scroll-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.scroll-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateY(rem(10));
+  }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

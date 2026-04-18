@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./styles/main.css">
   <script src="./scripts/main.js" type="module" defer></script>
 </head>
-<body>
+<body class="cyber-page">
   <header class="header">
     <div class="header__inner container">
       <div class="logo">
@@ -18,7 +18,7 @@
       <nav class="nav hidden-mobile">
         <ul class="nav__list">
           <li class="nav__item">
-            <a href="#" class="nav__link">
+            <a href="#home" class="nav__link">
               <svg fill="#000000" width="800px" height="800px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <title>home</title>
                 <path d="M28 4v24h-8v-8h-8v8h-8v-24h4v4h4v-4h8v4h4v-4h4z"></path>
@@ -27,7 +27,7 @@
             </a>
           </li>
           <li class="nav__item">
-            <a href="#" class="nav__link">
+            <a href="#tournament" class="nav__link">
               <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <g>
                   <path fill="none" d="M0 0h24v24H0z"/>
@@ -38,7 +38,7 @@
             </a>
           </li>
           <li class="nav__item">
-            <a href="#" class="nav__link">
+            <a href="#hardware" class="nav__link">
               <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 4H5v2H3v14h7v-8H5V6h14v6h-5v8h7V6h-2V4zm-3 10h3v4h-3v-4zm-8 0v4H5v-4h3z" fill="#000000"/>
               </svg>
@@ -46,7 +46,7 @@
             </a>
           </li>
           <li class="nav__item">
-            <a href="#" class="nav__link">
+            <a href="#question" class="nav__link">
               <svg width="800px" height="800px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0" fill="none" width="20" height="20"/>
                 <g>
@@ -65,13 +65,18 @@
       </button>
     </div>
   </header>
-  <section class="section">
+  
+  <!-- HERO SECTION -->
+  <section class="section hero-section" id="home">
     <div class="bg" style="background-image: url('images/hero.png');"></div>
+    <div class="glow-effect glow-effect--top"></div>
+    <div class="glow-effect glow-effect--bottom"></div>
     <div class="hero">
       <div class="hero__inner container">
         <div class="hero__content">
-          <div class="hero__title">E-SPORTS ZONE</div>
-          <div class="hero__button">
+          <h1 class="hero__title animate-on-scroll">E-SPORTS ZONE</h1>
+          <p class="hero__subtitle animate-on-scroll">Погрузись в мир киберспорта нового поколения</p>
+          <div class="hero__buttons animate-on-scroll">
             <button class="button button--full-a button-play">
               Играть
             </button>
@@ -82,12 +87,176 @@
         </div>
       </div>
     </div>
+    <div class="scroll-indicator">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </section>
-  <section class="section">
+  
+  <!-- TOURNAMENT SECTION -->
+  <section class="section tournament-section" id="tournament">
     <div class="tournament">
-      <div class="bg--2" style="background-image: url('');"></div>
+      <div class="bg--2" style="background-image: url('images/mask.png');"></div>
+      <div class="glow-effect glow-effect--center"></div>
       <div class="tournament__inner container">
-        asdasd
+        <h2 class="section-title animate-on-scroll">Турниры</h2>
+        <p class="section-subtitle animate-on-scroll">Участвуй в соревнованиях и побеждай</p>
+        
+        <div class="tournament-grid">
+          <div class="tournament-card animate-on-scroll">
+            <div class="tournament-card__image">
+              <img src="images/slide1.png" alt="CS2 Tournament">
+            </div>
+            <div class="tournament-card__content">
+              <h3 class="tournament-card__title">CS2 Championship</h3>
+              <p class="tournament-card__description">Еженедельный турнир по Counter-Strike 2</p>
+              <div class="tournament-card__info">
+                <span class="tournament-card__prize">Призовой фонд: 50,000₽</span>
+                <span class="tournament-card__date">Каждую субботу</span>
+              </div>
+              <button class="button button--full-a">Регистрация</button>
+            </div>
+          </div>
+          
+          <div class="tournament-card animate-on-scroll">
+            <div class="tournament-card__image">
+              <img src="images/pc-bootcamp.png" alt="Dota 2 Tournament">
+            </div>
+            <div class="tournament-card__content">
+              <h3 class="tournament-card__title">Dota 2 Battle</h3>
+              <p class="tournament-card__description">Командные сражения 5x5</p>
+              <div class="tournament-card__info">
+                <span class="tournament-card__prize">Призовой фонд: 100,000₽</span>
+                <span class="tournament-card__date">Каждое воскресенье</span>
+              </div>
+              <button class="button button--full-a">Регистрация</button>
+            </div>
+          </div>
+          
+          <div class="tournament-card animate-on-scroll">
+            <div class="tournament-card__image">
+              <img src="images/mask2.png" alt="Valorant Tournament">
+            </div>
+            <div class="tournament-card__content">
+              <h3 class="tournament-card__title">Valorant Cup</h3>
+              <p class="tournament-card__description">Тактический шутер 5x5</p>
+              <div class="tournament-card__info">
+                <span class="tournament-card__prize">Призовой фонд: 75,000₽</span>
+                <span class="tournament-card__date">Каждую пятницу</span>
+              </div>
+              <button class="button button--full-a">Регистрация</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- HARDWARE SECTION -->
+  <section class="section hardware-section" id="hardware">
+    <div class="hardware">
+      <div class="bg--2" style="background-image: url('images/hero.png');"></div>
+      <div class="glow-effect glow-effect--left"></div>
+      <div class="hardware__inner container">
+        <h2 class="section-title animate-on-scroll">Оборудование</h2>
+        <p class="section-subtitle animate-on-scroll">Топовое железо для максимального FPS</p>
+        
+        <div class="hardware-grid">
+          <div class="hardware-item animate-on-scroll">
+            <div class="hardware-item__icon">
+              <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm2 0v12h12V6H6zm3 3h2v2H9V9zm4 0h2v2h-2V9zm-4 4h2v2H9v-2zm4 0h2v2h-2v-2z" fill="#ff1668"/>
+              </svg>
+            </div>
+            <h3 class="hardware-item__title">RTX 4090</h3>
+            <p class="hardware-item__description">Флагманские видеокарты для ультра настроек</p>
+          </div>
+          
+          <div class="hardware-item animate-on-scroll">
+            <div class="hardware-item__icon">
+              <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="#ff1668"/>
+              </svg>
+            </div>
+            <h3 class="hardware-item__title">Intel i9-14900K</h3>
+            <p class="hardware-item__description">Процессоры последнего поколения</p>
+          </div>
+          
+          <div class="hardware-item animate-on-scroll">
+            <div class="hardware-item__icon">
+              <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h2v2H6zm4-4h8v2h-8zm0 4h8v2h-8z" fill="#ff1668"/>
+              </svg>
+            </div>
+            <h3 class="hardware-item__title">240Hz Мониторы</h3>
+            <p class="hardware-item__description">Максимальная плавность изображения</p>
+          </div>
+          
+          <div class="hardware-item animate-on-scroll">
+            <div class="hardware-item__icon">
+              <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#ff1668"/>
+              </svg>
+            </div>
+            <h3 class="hardware-item__title">Механические клавиатуры</h3>
+            <p class="hardware-item__description">Профессиональные девайсы для киберспорта</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- QUESTION SECTION -->
+  <section class="section question-section" id="question">
+    <div class="question">
+      <div class="bg--2" style="background-image: url('images/mask.png');"></div>
+      <div class="glow-effect glow-effect--right"></div>
+      <div class="question__inner container">
+        <h2 class="section-title animate-on-scroll">Вопросы</h2>
+        <p class="section-subtitle animate-on-scroll">Часто задаваемые вопросы</p>
+        
+        <div class="faq-list">
+          <div class="faq-item animate-on-scroll">
+            <button class="faq-item__header">
+              <span class="faq-item__question">Как забронировать место?</span>
+              <span class="faq-item__icon">+</span>
+            </button>
+            <div class="faq-item__content">
+              <p>Вы можете забронировать место через наш сайт, позвонив по телефону или посетив клуб лично.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item animate-on-scroll">
+            <button class="faq-item__header">
+              <span class="faq-item__question">Сколько стоит час игры?</span>
+              <span class="faq-item__icon">+</span>
+            </button>
+            <div class="faq-item__content">
+              <p>Стоимость зависит от зоны и времени суток. Цены начинаются от 100₽ за час в стандартной зоне.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item animate-on-scroll">
+            <button class="faq-item__header">
+              <span class="faq-item__question">Есть ли скидки для студентов?</span>
+              <span class="faq-item__icon">+</span>
+            </button>
+            <div class="faq-item__content">
+              <p>Да, мы предоставляем скидки 20% для студентов при предъявлении студенческого билета.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item animate-on-scroll">
+            <button class="faq-item__header">
+              <span class="faq-item__question">Можно ли проводить свои турниры?</span>
+              <span class="faq-item__icon">+</span>
+            </button>
+            <div class="faq-item__content">
+              <p>Конечно! Мы организуем и проводим частные турниры. Свяжитесь с администратором для деталей.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
