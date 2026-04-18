@@ -1,0 +1,29 @@
+.social{
+
+  &__list{
+    display: flex;
+    gap: rem(10);
+    justify-content: center;
+    padding: rem(20);
+    @include mobile{
+      padding: rem(10);
+    }
+  }
+  &__item{
+
+    svg{
+      height: rem(25);
+      width: rem(25);
+      fill: var(--color-light-40);
+      color: var(--color-light-40);
+    }
+
+    &:hover{
+
+      svg{
+        fill: var(--color-accent-game);
+        color: var(--color-accent-game);
+      }
+    }
+  }
+}

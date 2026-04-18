@@ -1,0 +1,34 @@
+.button{
+  border: 2px solid var(--color-light-10);
+  padding: rem(5) rem(25);
+  background-color: transparent;
+  color: var(--color-light-10);
+  font-size: rem(25);
+  transition-duration: var(--transition-duration);
+
+  @include hover(){
+    color: var(--color-accent-game);
+    border-color: var(--color-accent-game);
+    transition-duration: var(--transition-duration);
+  }
+
+
+  &--full-a{
+    border-color: var(--color-accent-game);
+    background-color: var(--color-accent-game);
+
+    @include hover-bounce-y();
+    @include hover(){
+      color: var(--color-light-10);
+    }
+  }
+  &--full-w{
+    border-color: var(--color-light-10);
+    background-color: var(--color-light-10);
+    color: var(--color-accent-game);
+    @include hover-bounce-y();
+    @include hover(){
+      color: var(--color-accent-game);
+    }
+  }
+}

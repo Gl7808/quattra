@@ -12,7 +12,9 @@
   --color-light-40 : #5c5c60;
 
   --color-dark-10 : #0c0c0c;
+  --color-dark-12 : rgb(14, 14, 14);
   --color-dark-15 : #1a1a1a;
+  --color-dark-15-5 : rgba(26, 26, 26, 0.5);
   --color-dark-20 : #262626;
   --color-dark-25 : #333333;
   --color-dark-30 : #424242;
@@ -35,8 +37,10 @@
   --color-red-35 : #ffd7d9;
   --color-red-40 : #fffafa;
 
+  --color-bg: #090909;
+
   --color-accent-lounge : #3eb489;
-  --color-accent-game : #fd1920;
+  --color-accent-game : #ff1668;
 
   --font-family-base: 'Montserrat', sans-serif;
   --font-family-accent: 'Roboto', sans-serif;
@@ -46,6 +50,7 @@
   --container-padding-x: #{rem(50)};
   --section-padding-y: #{rem(50)};
 
+  --border-r-s:rem(2);
 
   @include laptop{
     --container-width: #{rem(1200)};

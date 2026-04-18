@@ -56,3 +56,16 @@
   background-color: transparent;
   border: none;
 }
+
+
+@mixin hover-bounce-y($duration: 0.5s, $easing: ease-in-out) {
+  &:hover {
+    animation: smooth-bounce-y $duration $easing;
+  }
+}
+
+@mixin hover-bounce-x($duration: 0.5s, $easing: ease-in-out) {
+  &:hover {
+    animation: smooth-bounce-x $duration $easing;
+  }
+}

@@ -10,109 +10,177 @@
   <script src="./scripts/main.js" type="module" defer></script>
 </head>
 <body>
-<section class="cyber-hero">
-  <div class="cyber-hero__slider">
-    <!-- Слайд 1: Таймер турнира -->
-    <div class="cyber-hero__slide cyber-hero__slide--active" data-slide="0">
-      <div class="cyber-hero__bg">
-        <img src="https://i.ytimg.com/vi/nGrMgg1J0sY/maxresdefault.jpg" alt="Tournament" loading="lazy">
-        <div class="cyber-hero__overlay"></div>
+  <header class="header">
+    <div class="header__inner container">
+      <div class="logo">
+        <p class="logo__text">Qua<span>tt</span>ra</p>
       </div>
-      <div class="container">
-        <div class="cyber-hero__content">
-          <span class="cyber-hero__tag">Скоро</span>
-          <div class="cyber-hero__timer" id="tournament-timer">
-            <div class="cyber-hero__timer-item">
-              <span class="cyber-hero__timer-value" data-days>00</span>
-              <span class="cyber-hero__timer-label">Дней</span>
-            </div>
-            <div class="cyber-hero__timer-separator">:</div>
-            <div class="cyber-hero__timer-item">
-              <span class="cyber-hero__timer-value" data-hours>00</span>
-              <span class="cyber-hero__timer-label">Часов</span>
-            </div>
-            <div class="cyber-hero__timer-separator">:</div>
-            <div class="cyber-hero__timer-item">
-              <span class="cyber-hero__timer-value" data-minutes>00</span>
-              <span class="cyber-hero__timer-label">Минут</span>
-            </div>
-            <div class="cyber-hero__timer-separator">:</div>
-            <div class="cyber-hero__timer-item">
-              <span class="cyber-hero__timer-value" data-seconds>00</span>
-              <span class="cyber-hero__timer-label">Секунд</span>
-            </div>
+      <nav class="nav hidden-mobile">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a href="#" class="nav__link">
+              <svg fill="#000000" width="800px" height="800px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <title>home</title>
+                <path d="M28 4v24h-8v-8h-8v8h-8v-24h4v4h4v-4h8v4h4v-4h4z"></path>
+                <span class="nav__description">home</span>
+              </svg>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link">
+              <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <path fill="none" d="M0 0h24v24H0z"/>
+                  <path fill-rule="nonzero" d="M17.457 3L21 3.003l.002 3.523-5.467 5.466 2.828 2.829 1.415-1.414 1.414 1.414-2.474 2.475 2.828 2.829-1.414 1.414-2.829-2.829-2.475 2.475-1.414-1.414 1.414-1.415-2.829-2.828-2.828 2.828 1.415 1.415-1.414 1.414-2.475-2.475-2.829 2.829-1.414-1.414 2.829-2.83-2.475-2.474 1.414-1.414 1.414 1.413 2.827-2.828-5.46-5.46L3 3l3.546.003 5.453 5.454L17.457 3zm-7.58 10.406L7.05 16.234l.708.707 2.827-2.828-.707-.707zm9.124-8.405h-.717l-4.87 4.869.706.707 4.881-4.879v-.697zm-14 0v.7l11.241 11.241.707-.707L5.716 5.002l-.715-.001z"/>
+                </g>
+              </svg>
+              <span class="nav__description">tournament</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link">
+              <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 4H5v2H3v14h7v-8H5V6h14v6h-5v8h7V6h-2V4zm-3 10h3v4h-3v-4zm-8 0v4H5v-4h3z" fill="#000000"/>
+              </svg>
+              <span class="nav__description">hardware</span>
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#" class="nav__link">
+              <svg width="800px" height="800px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" fill="none" width="20" height="20"/>
+                <g>
+                  <path d="M5 10c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm12-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-7 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                </g>
+              </svg>
+              <span class="nav__description">question</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <button class="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+  <section class="section">
+    <div class="bg" style="background-image: url('images/hero.png');"></div>
+    <div class="hero">
+      <div class="hero__inner container">
+        <div class="hero__content">
+          <div class="hero__title">E-SPORTS ZONE</div>
+          <div class="hero__button">
+            <button class="button button--full-a button-play">
+              Играть
+            </button>
+            <button class="button button-map" aria-label="Открыть карту">
+              Карта
+            </button>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="tournament">
+      <div class="bg--2" style="background-image: url('');"></div>
+      <div class="tournament__inner container">
+        asdasd
+      </div>
+    </div>
+  </section>
 
-          <p class="cyber-hero__subtitle">5v5 • Призовой фонд 500,000₽ • Регистрация открыта</p>
 
-          <div class="cyber-hero__actions">
-            <a href="#registration" class="btn btn--primary">Регистрация</a>
-            <a href="#details" class="btn btn--outline">Подробнее</a>
+  <div class="sidebar">
+    <div class="sidebar__inner">
+
+      <!-- Кнопка закрытия внутри сайдбара -->
+      <button class="burger burger2" aria-label="Закрыть меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="sidebar__content">
+        <div class="sidebar__nav">
+          <ul class="sidebar__list">
+            <li class="sidebar__item">
+              <a href="#" class="sidebar__link">INDEX</a>
+            </li>
+            <li class="sidebar__item">
+              <a href="#" class="sidebar__link">CYBERCLUB</a>
+            </li>
+            <li class="sidebar__item">
+              <a href="#" class="sidebar__link">KITCHEN</a>
+            </li>
+            <li class="sidebar__item">
+              <a href="#" class="sidebar__link">LOUNGE</a>
+            </li>
+          </ul>
+        </div>
+        <div class="sidebar__title">
+          <a href="">
+            <p>Quattra</p>
+          </a>
+        </div>
+        <div class="social">
+          <ul class="social__list">
+            <li class="social__item">
+              <a href="#" class="social__link">
+                <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M23.4493 5.94799C23.6161 5.40154 23.4493 5 22.6553 5H20.0297C19.3621 5 19.0543 5.34687 18.8874 5.72936C18.8874 5.72936 17.5521 8.92607 15.6606 11.0025C15.0487 11.6036 14.7705 11.7949 14.4367 11.7949C14.2698 11.7949 14.0194 11.6036 14.0194 11.0572V5.94799C14.0194 5.29225 13.8345 5 13.2781 5H9.15213C8.73494 5 8.48403 5.30434 8.48403 5.59278C8.48403 6.21441 9.42974 6.35777 9.52722 8.10641V11.9042C9.52722 12.7368 9.37413 12.8878 9.04032 12.8878C8.15023 12.8878 5.98507 9.67682 4.70093 6.00261C4.44927 5.28847 4.19686 5 3.52583 5H0.900218C0.150044 5 0 5.34687 0 5.72936C0 6.41244 0.890141 9.80039 4.14464 14.2812C6.31429 17.3412 9.37118 19 12.1528 19C13.8218 19 14.0283 18.6316 14.0283 17.997V15.6842C14.0283 14.9474 14.1864 14.8003 14.7149 14.8003C15.1043 14.8003 15.7719 14.9916 17.3296 16.467C19.1099 18.2156 19.4034 19 20.4047 19H23.0304C23.7805 19 24.1556 18.6316 23.9392 17.9045C23.7024 17.1799 22.8525 16.1286 21.7247 14.8823C21.1127 14.1719 20.1947 13.4069 19.9165 13.0243C19.5271 12.5326 19.6384 12.314 19.9165 11.8769C19.9165 11.8769 23.1155 7.45067 23.4493 5.94799Z" fill="#000000"/>
+                </svg>
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__link">
+                <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/></svg>
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__link">
+                <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.265 3 3 6.236v13.223h4.502V21l2.531.85 2.392-2.391h3.658l4.923-4.924V3H4.265zm15.052 10.691-2.813 2.814h-4.502l-2.391 2.391v-2.391H5.813V4.688h13.504v9.003zm-2.812-5.767v4.923h-1.688V7.924h1.688zm-4.502 0v4.923h-1.688V7.924h1.688z"/></svg>
+              </a>
+            </li>
+            <li class="social__item">
+              <a href="#" class="social__link">
+                <svg fill="#000000" width="800px" height="800px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon">
+                  <path d="M941.3 296.1a112.3 112.3 0 0 0-79.2-79.3C792.2 198 512 198 512 198s-280.2 0-350.1 18.7A112.12 112.12 0 0 0 82.7 296C64 366 64 512 64 512s0 146 18.7 215.9c10.3 38.6 40.7 69 79.2 79.3C231.8 826 512 826 512 826s280.2 0 350.1-18.8c38.6-10.3 68.9-40.7 79.2-79.3C960 658 960 512 960 512s0-146-18.7-215.9zM423 646V378l232 133-232 135z"/>
+                </svg> </a>
+            </li>
+          </ul>
+          <div class="phone">
+            <p class="phone__number" >+7 931-080-22-42</p>
+            <p class="phone__number">+7 931-080-22-43</p>
+            <p class="phone__address">Ул.Строителей д.42</p>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Слайд 2 -->
-    <div class="cyber-hero__slide" data-slide="1">
-      <div class="cyber-hero__bg">
-        <img src="https://avatars.mds.yandex.net/i?id=d66c1eaf504b8abce0bb1e1edf1f5b77_l-4396079-images-thumbs&n=13" alt="Gaming Zone" loading="lazy">
-        <div class="cyber-hero__overlay"></div>
-      </div>
-      <div class="container">
-        <div class="cyber-hero__content">
-          <span class="cyber-hero__tag">CYBER CLUB</span>
-          <h1 class="cyber-hero__title">Премиум железо</h1>
-          <p class="cyber-hero__subtitle">RTX 4090 • Intel i9-14900K • 240Hz мониторы</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Слайд 3 -->
-    <div class="cyber-hero__slide" data-slide="2">
-      <div class="cyber-hero__bg">
-        <img src="https://avatars.mds.yandex.net/get-altay/6319069/2a000001817178149a1e49d7d61d56ed114c/XXL_height" alt="Lounge Zone" loading="lazy">
-        <div class="cyber-hero__overlay"></div>
-      </div>
-      <div class="container">
-        <div class="cyber-hero__content">
-          <span class="cyber-hero__tag">CYBER CLUB</span>
-          <h1 class="cyber-hero__title">Комфортные зоны</h1>
-          <p class="cyber-hero__subtitle">VIP комнаты • Зоны отдыха • Бар</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Слайд 4 -->
-    <div class="cyber-hero__slide" data-slide="3">
-      <div class="cyber-hero__bg">
-        <img src="/assets/images/cyber-slide-04.jpg" alt="Events" loading="lazy">
-        <div class="cyber-hero__overlay"></div>
-      </div>
-      <div class="container">
-        <div class="cyber-hero__content">
-          <span class="cyber-hero__tag">CYBER CLUB</span>
-          <h1 class="cyber-hero__title">События и ивенты</h1>
-          <p class="cyber-hero__subtitle">Еженедельные турниры • Ланч-сессии • Стримы</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Навигация -->
-    <div class="cyber-hero__nav">
-      <div class="cyber-hero__nav-bars">
-        <button class="cyber-hero__nav-bar cyber-hero__nav-bar--active" data-nav="0" aria-label="Slide 1"></button>
-        <button class="cyber-hero__nav-bar" data-nav="1" aria-label="Slide 2"></button>
-        <button class="cyber-hero__nav-bar" data-nav="2" aria-label="Slide 3"></button>
-        <button class="cyber-hero__nav-bar" data-nav="3" aria-label="Slide 4"></button>
-      </div>
-      <div class="cyber-hero__nav-counter">
-        <span class="cyber-hero__nav-current">01</span>
-        <span class="cyber-hero__nav-divider">/</span>
-        <span class="cyber-hero__nav-total">04</span>
       </div>
     </div>
   </div>
-</section>
+  <div class="map-overlay">
+    <div class="map-overlay__inner">
+      <button class="map-overlay__close button " aria-label="Закрыть">CLOSE</button>
+      <div class="map-description">
+        ул. Строителей, 98
+      </div>
+      <!-- Контент карты -->
+      <div class="map-overlay__content">
+        <div class="map-embed">
+          <iframe
+                  src="https://yandex.ru/map-widget/v1/?um=constructor%3Adf1930bcf6e1bc207f020143efb3769e1e084557a1dd2fa7eb26a12828306a5b&amp;source=constructor"
+                  width="100%"
+                  height="1080px"
+                  frameborder="0">
+          </iframe>
+        </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
 </body>
 </html>

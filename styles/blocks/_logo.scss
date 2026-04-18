@@ -1,0 +1,16 @@
+.logo{
+
+  &__text{
+    font-size: rem(20);
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: var(--font-family-strict);
+    color: var(--color-light-10);
+    letter-spacing: rem(1.5);
+
+    span{
+      color:var(--color-accent-game);
+      letter-spacing: rem(1);
+    }
+  }
+}

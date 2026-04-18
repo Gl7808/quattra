@@ -8,7 +8,18 @@
 
 @import
 "blocks/header",
+"blocks/bg",
+"blocks/button",
+"blocks/burger",
+"blocks/glow",
 "blocks/hero",
+"blocks/nav",
+"blocks/logo",
+"blocks/sidebar",
+"blocks/map",
+"blocks/social",
+"blocks/phone",
+"blocks/tournament",
 "blocks/footer";
 
 
@@ -16,4 +27,5 @@
 
 // CYBER_CLUB
 @import
-"blocks/cyber/cyber-hero";
+"blocks/cyber/cyber-hero",
+"blocks/cyber/cyber-header";

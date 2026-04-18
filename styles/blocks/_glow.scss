@@ -1,0 +1,33 @@
+.glow{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+
+  &:before{
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background-color: #ff1668;
+    filter: blur(450px);
+    z-index: 2;
+    left: -10%;
+    top: 0;
+  }
+
+  &--l{
+    &:before{
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-color: #ffffff;
+      filter: blur(150px);
+      z-index: 2;
+      right: -15%;
+    }
+  }
+}

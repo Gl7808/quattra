@@ -1,0 +1,46 @@
+.nav{
+
+  &__list{
+    display: flex;
+    gap: rem(80);
+  }
+  &__item{
+
+    &:hover{
+
+      .nav__description{
+        opacity: 1;
+        transition-duration: 1s;
+      }
+    }
+
+  }
+  &__link{
+    position: relative;
+
+    svg{
+      height: 20px ;
+      width: 20px ;
+      color: var(--color-light-10);
+      fill: var(--color-light-10);
+
+
+      @include hover(){
+        color: var(--color-accent-game);
+        fill: var(--color-accent-game);
+      }
+    }
+  }
+  &__description{
+    position: absolute;
+    @include abs-center;
+    top: rem(45);
+    opacity: 0;
+    font-size: rem(12);
+    text-transform: uppercase;
+    transition-duration: 0.5s;
+    padding: rem(8);
+    background-color: var(--color-dark-15);
+    border-radius: var(--border-r-s);
+  }
+}

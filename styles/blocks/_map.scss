@@ -1,0 +1,124 @@
+
+.button-map {
+
+
+  &:hover {
+    background-color: var(--color-dark-12)
+  }
+}
+
+// === Оверлей карты ===
+.map-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+
+  // Две половинки для анимации
+  &::before, &::after {
+    position: absolute;
+    content: '';
+    height: 50%;
+    width: 0%;
+    background-color: var(--color-dark-10);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+  }
+
+  &::before {
+    left: 0;
+    top: 0;
+  }
+
+  &::after {
+    right: 0;
+    top: 50%;
+  }
+
+  &.active {
+    pointer-events: auto;
+
+    &::before, &::after {
+      width: 100%;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s 0.2s; // появляется после анимации фона
+  }
+
+  &.active &__inner {
+    opacity: 1;
+  }
+
+  // Кнопка закрытия
+  &__close {
+    position: absolute;
+    top: rem(20);
+    right: rem(20);
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+    z-index: 3;
+    background-color: var(--color-accent-game);
+    @include mobile{
+      top: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--color-accent-game);
+      border-color: var(--color-accent-game);
+      color: var(--color-light-10);
+    }
+    &:hover {
+      background: var(--color-light-10);
+      border-color: var(--color-light-10);
+    }
+  }
+
+  &__content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: var(--color-light-10);
+    position: relative;
+  }
+}
+
+.map__overlay{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.map-embed{
+  width: 100%;
+  height: 35rem;
+  display: block;
+  filter: grayscale(100%) invert(92%) contrast(1.1);
+  transition: filter 0.5s ease;
+}
+
+.map-description{
+  z-index: 3;
+  position: absolute;
+  background-color: var(--color-light-10);
+  padding: rem(10) rem(20);
+  top: rem(20);
+  left: rem(20);
+  @include mobile{
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

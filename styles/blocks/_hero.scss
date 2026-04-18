@@ -2,4 +2,29 @@
   height: 100vh;
   width: 100%;
   font-family: var(--font-family-accent);
+  padding-top: rem(130);
+
+  position: relative;
+
+  &__inner{
+    z-index: 3;
+    height: 100%;
+  }
+
+  &__content{
+    width: 100%;
+    height: 100%;
+    @include flex-center();
+    flex-direction: column;
+  }
+  &__title{
+    z-index: 3;
+    font-size: rem(60);
+    color: var(--color-accent-game);
+    font-family: var(--font-family-strict);
+    font-weight: 800;
+    text-align: center;
+  }
 }
+
+

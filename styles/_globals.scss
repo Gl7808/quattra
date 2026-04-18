@@ -5,7 +5,7 @@ body{
 
   font-family: var(--font-family-base);
   font-weight: 400;
-  background-color: var(--color-dark-10);
+  background-color: var(--color-bg);
   color: var(--color-light-35);
 }
 
@@ -48,4 +48,14 @@ h3, .h3 {
 
 h4, .h4 {
   @include fluid-text(28, 18);
+}
+
+@keyframes smooth-bounce-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes smooth-bounce-x {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-4px); }
 }
