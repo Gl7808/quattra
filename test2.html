@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cyber - QuaTTra</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+  <style>
+    /** Нормализация и базовые стили **/
+    *, ::before, ::after { box-sizing: border-box; }
+    :where(ul, ol):where([class]) { padding-left: 0; }
+    body, :where(blockquote, figure, fieldset):where([class]) { margin: 0; }
+    :where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) { margin-block: 0; }
+    :where(dd[class]) { margin-left: 0; }
+    :where(fieldset[class]) { padding: 0; border: none; }
+    :where(ul[class]) { list-style: none; }
+    :where(address[class]) { font-style: normal; }
+    p { --paragraphMarginBottom: 24px; margin-block: 0; }
+    p:where(:not([class]):not(:last-child)) { margin-bottom: var(--paragraphMarginBottom); }
+    img, video { display: block; max-width: 100%; height: auto; }
+    input, textarea, select, button { font: inherit; }
+
+    html { height: 100%; scroll-behavior: smooth; }
+    body { min-height: 100%; line-height: 1.5; }
+    a:where([class]) { display: inline-flex; }
+    button, label { cursor: pointer; }
+    button { -webkit-tap-highlight-color: transparent; }
+    :where([fill]:not([fill=none], [fill^=url])) { fill: currentColor; }
+    :where([stroke]:not([stroke=none], [stroke^=url])) { stroke: currentColor; }
+    svg * { transition-property: fill, stroke; }
+    :where(table) { border-collapse: collapse; border-color: currentColor; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    /** Переменные **/
+    :root {
+      --color-light-10: #ffffff;
+      --color-light-15: #fafafa;
+      --color-light-20: #f5f5f5;
+      --color-light-25: #eeeeee;
+      --color-light-30: #e0e0e0;
+      --color-light-35: #808080;
+      --color-light-40: #5c5c60;
+      --color-dark-10: #0c0c0c;
+      --color-dark-12: rgb(14, 14, 14);
+      --color-dark-15: #1a1a1a;
+      --color-dark-15-5: rgba(26, 26, 26, 0.5);
+      --color-dark-20: #262626;
+      --color-dark-25: #333333;
+      --color-dark-30: #424242;
+      --color-dark-35: #525252;
+      --color-dark-40: #636363;
+      --color-green-10: #3eb489;
+      --color-green-15: #5bc49e;
+      --color-green-20: #77d4b3;
+      --color-green-25: #94e4c8;
+      --color-green-30: #b1f0dd;
+      --color-green-35: #cef5eb;
+      --color-green-40: #ebfaf5;
+      --color-red-10: #FF2400;
+      --color-red-15: #ff472b;
+      --color-red-20: #ff6b56;
+      --color-red-25: #ff8f81;
+      --color-red-30: #ffb3ad;
+      --color-red-35: #ffd7d9;
+      --color-red-40: #fffafa;
+      --color-bg: #090909;
+      --color-accent-lounge: #3eb489;
+      --color-accent-game: #ff1668;
+      --font-family-base: 'Montserrat', sans-serif;
+      --font-family-accent: 'Roboto', sans-serif;
+      --font-family-strict: 'Manrope', system-ui;
+      --container-width: 93.75rem;
+      --container-padding-x: 3.125rem;
+      --section-padding-y: 3.125rem;
+      --border-r-s: 0.125rem;
+      --transition-duration: 0.2s;
+    }
+
+    @media (width <= 90.06125rem) { :root { --container-width: 75rem; } }
+    @media (width <= 47.99875rem) {
+      :root { --container-padding-x: 1.25rem; --section-padding-y: 1.25rem; }
+    }
+    /** Базовые компоненты **/
+    .container {
+      max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+      margin-inline: auto;
+      padding-inline: var(--container-padding-x);
+    }
+
+    .visually-hidden {
+      position: absolute !important; width: 1px !important; height: 1px !important;
+      margin: -1px !important; border: 0 !important; padding: 0 !important;
+      white-space: nowrap !important; clip-path: inset(100%) !important;
+      clip: rect(0 0 0 0) !important; overflow: hidden !important;
+    }
+
+    @media (width <= 47.99875rem) { .hidden-mobile { display: none !important; } }
+    @media (width > 47.99875rem) { .visible-mobile { display: none !important; } }
+    body {
+      font-size: clamp(0.875rem, 0.7944214876rem + 0.3305785124vw, 1.125rem);
+      font-family: var(--font-family-base);
+      font-weight: 400;
+      background-color: var(--color-bg);
+      color: var(--color-light-35);
+    }
+
+    a, button, input, textarea, svg * { transition-duration: var(--transition-duration); }
+
+    a { text-decoration: none; font-weight: 500; color: inherit; }
+    @media (any-hover: hover) { a:hover { color: var(--color-accent-game); } }
+    @media (any-hover: none) { a:active { color: var(--color-accent-game); } }
+
+    h1, h2, h3, h4 {
+      font-weight: 700; text-transform: uppercase; font-style: normal;
+      color: var(--color-light-10); font-family: Roboto;
+    }
+
+    h1, .h1 { font-size: clamp(3.125rem, 2.117768595rem + 4.132231405vw, 6.25rem); }
+    h2, .h2 { font-size: clamp(2.5625rem, 2.4013429752rem + 0.6611570248vw, 3.0625rem); }
+    h3, .h3 { font-size: clamp(1.75rem, 1.5082644628rem + 0.9917355372vw, 2.5rem); }
+    h4, .h4 { font-size: clamp(1.125rem, 0.923553719rem + 0.826446281vw, 1.75rem); }
+    @keyframes smooth-bounce-y {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    @keyframes smooth-bounce-x {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-4px); }
+    }
+    @keyframes scroll-bounce {
+      0%, 100% { opacity: 1; transform: translateY(0); }
+      50% { opacity: 0.3; transform: translateY(0.625rem); }
+    }
+    /** Header **/
+    .header { position: fixed; width: 100%; top: 0; z-index: 100; }
+    .header__inner { padding-top: 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+
+    .bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-size: cover; background-position: center; background-repeat: no-repeat;
+    }
+    @media (width <= 47.99875rem) { .bg { background-position: 90%; } }
+    .bg::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(10, 10, 10, 0.96) 0%, rgba(10, 10, 10, 0.75) 50%, rgba(10, 10, 10, 0.9) 100%);
+      z-index: 1;
+    }
+    .bg::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 30px 30px; z-index: 2;
+      mask-image: radial-gradient(circle at 70% 50%, black 30%, transparent 70%);
+    }
+
+    .bg--2 {
+      position: absolute; inset: 0; z-index: 1;
+      background-size: cover; background-position: center; background-repeat: no-repeat;
+      left: 0; top: 0;
+    }
+    .bg--2::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+    .bg--2::before {
+      opacity: 0.5; position: absolute; inset: 0;
+      background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 30px 30px; z-index: 2;
+      mask-image: radial-gradient(circle at 70% 50%, black 30%, transparent 70%);
+    }
+    /** Buttons **/
+    .button {
+      border: 2px solid var(--color-light-10); padding: 0.3125rem 1.5625rem;
+      background-color: transparent; color: var(--color-light-10);
+      font-size: 1.5625rem; transition-duration: var(--transition-duration);
+    }
+    @media (any-hover: hover) {
+      .button:hover { color: var(--color-accent-game); border-color: var(--color-accent-game); }
+    }
+    @media (any-hover: none) {
+      .button:active { color: var(--color-accent-game); border-color: var(--color-accent-game); }
+    }
+    .button--full-a {
+      border-color: var(--color-accent-game);
+      background-color: var(--color-accent-game);
+    }
+    .button--full-a:hover { animation: smooth-bounce-y 0.5s ease-in-out; }
+    @media (any-hover: hover) { .button--full-a:hover { color: var(--color-light-10); } }
+    @media (any-hover: none) { .button--full-a:active { color: var(--color-light-10); } }
+    .button--full-w {
+      border-color: var(--color-light-10); background-color: var(--color-light-10);
+      color: var(--color-accent-game);
+    }
+    .button--full-w:hover { animation: smooth-bounce-y 0.5s ease-in-out; }
+    @media (any-hover: hover) { .button--full-w:hover { color: var(--color-accent-game); } }
+    @media (any-hover: none) { .button--full-w:active { color: var(--color-accent-game); } }
+    .button-map:hover { background-color: var(--color-dark-12); }
+    /** Burger **/
+    .burger {
+      position: relative; width: 32px; height: 32px; background-color: var(--color-dark-10);
+      border: none; cursor: pointer; padding: 0; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; gap: 6px;
+      transition: background-color 0.2s; flex-shrink: 0;
+    }
+    .burger span {
+      display: block; width: 20px; height: 2px; background-color: var(--color-light-10);
+      border-radius: 2px; transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .burger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .burger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    /** Glow effects **/
+    .glow-effect { position: absolute; pointer-events: none; z-index: 2; }
+    .glow-effect--top {
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(255, 22, 104, 0.3) 0%, transparent 70%);
+      filter: blur(80px);
+    }
+    .glow-effect--bottom {
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 300px;
+      background: radial-gradient(ellipse, rgba(255, 22, 104, 0.2) 0%, transparent 70%);
+      filter: blur(60px);
+    }
+    .glow-effect--center {
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(255, 22, 104, 0.15) 0%, transparent 60%);
+      filter: blur(100px);
+    }
+    .glow-effect--left {
+      top: 30%; left: -10%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255, 22, 104, 0.2) 0%, transparent 60%);
+      filter: blur(90px);
+    }
+    .glow-effect--right {
+      top: 30%; right: -10%; left: auto;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255, 22, 104, 0.2) 0%, transparent 60%);
+      filter: blur(90px);
+    }
+    /** Hero Section **/
+    .hero {
+      height: 100vh; width: 100%; font-family: var(--font-family-accent);
+      padding-top: 8.125rem; position: relative;
+    }
+    .hero__inner { z-index: 3; height: 100%; }
+    .hero__content {
+      width: 100%; height: 100%; display: flex;
+      justify-content: center; align-items: center; flex-direction: column;
+    }
+    .hero__title {
+      z-index: 3; font-size: 5rem; color: var(--color-accent-game);
+      font-family: var(--font-family-strict); font-weight: 800;
+      text-align: center; text-transform: uppercase; letter-spacing: 0.25rem;
+      text-shadow: 0 0 40px rgba(255, 22, 104, 0.5);
+    }
+    .hero__subtitle {
+      font-size: 1.25rem; color: var(--color-dark-35); text-align: center;
+      margin-top: 1.25rem; margin-bottom: 2.5rem; max-width: 37.5rem;
+    }
+    .hero__buttons { display: flex; gap: 1.25rem; }
+    /** Navigation **/
+    .nav__list { display: flex; gap: 5rem; }
+    .nav__item:hover .nav__description { opacity: 1; transition-duration: 1s; }
+    .nav__link { position: relative; }
+    .nav__link svg { height: 20px; width: 20px; color: var(--color-light-10); fill: var(--color-light-10); }
+    @media (any-hover: hover) {
+      .nav__link svg:hover { color: var(--color-accent-game); fill: var(--color-accent-game); }
+    }
+    @media (any-hover: none) {
+      .nav__link svg:active { color: var(--color-accent-game); fill: var(--color-accent-game); }
+    }
+    .nav__description {
+      position: absolute; top: 50%; left: 50%; translate: -50% -50%;
+      top: 2.8125rem; opacity: 0; font-size: 0.75rem; text-transform: uppercase;
+      transition-duration: 0.5s; padding: 0.5rem;
+      background-color: var(--color-dark-15); border-radius: var(--border-r-s);
+    }
+    /** Logo **/
+    .logo__text {
+      font-size: 1.25rem; text-transform: uppercase; font-weight: 800;
+      font-family: var(--font-family-strict); color: var(--color-light-10);
+      letter-spacing: 0.09375rem;
+    }
+    .logo__text span { color: var(--color-accent-game); letter-spacing: 0.0625rem; }
+    /** Sidebar **/
+    .sidebar {
+      position: fixed; right: 0; top: 0; width: 35vw; min-width: 25rem;
+      height: 100vh; pointer-events: none; z-index: 90;
+    }
+    @media (width <= 47.99875rem) { .sidebar { width: 100%; min-width: auto; } }
+    .sidebar__content {
+      width: 100%; height: 100%; display: flex;
+      flex-direction: column; justify-content: center;
+    }
+    .sidebar__title {
+      width: 100%; text-transform: uppercase; color: var(--color-light-10);
+      font-weight: 800; font-family: var(--font-family-strict);
+      letter-spacing: 1px; text-align: center; display: flex;
+      justify-content: center; padding: 1.25rem;
+    }
+    @media (width <= 47.99875rem) { .sidebar__title { padding: 0.625rem; } }
+    .sidebar__title span { color: var(--color-accent-game); }
+    .sidebar::before, .sidebar::after {
+      position: absolute; content: ""; width: 50%; height: 0%;
+      background-color: var(--color-dark-10);
+      transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;
+    }
+    .sidebar::before { right: 0; top: 0; }
+    .sidebar::after { left: 0; bottom: 0; }
+    .sidebar.active { pointer-events: auto; }
+    .sidebar.active::before, .sidebar.active::after { height: 100%; }
+    .sidebar__inner {
+      overflow: hidden; position: relative; z-index: 2; height: 100%;
+      padding: 1.25rem; opacity: 0; transition: opacity 0.3s 0.15s;
+      display: flex; flex-direction: column; align-items: flex-end;
+    }
+    .sidebar.active .sidebar__inner { opacity: 1; }
+    .burger2 { margin: 0.625rem 0.625rem 0 auto; background-color: transparent; }
+    .burger2 span { background-color: var(--color-light-10); }
+    .burger2:hover span { opacity: 0.8; }
+    .sidebar__nav {
+      width: 100%; height: 100%; display: flex;
+      flex-direction: column; align-self: center;
+    }
+    .sidebar__list {
+      height: 100%; display: flex; flex-direction: column;
+      gap: 1.875rem; align-items: center; justify-content: center;
+    }
+    .sidebar__item {
+      font-size: clamp(2.1875rem, 1.986053719rem + 0.826446281vw, 2.8125rem);
+      position: relative;
+    }
+    .sidebar__item:before {
+      content: "→"; color: var(--color-accent-game); position: absolute;
+      left: -40px; top: 50%; transform: translateY(-50%); z-index: 2;
+      opacity: 0; transition-duration: 0.5s;
+    }
+    .sidebar__item:hover { animation: smooth-bounce-x 0.5s ease-in-out; }
+    .sidebar__item:hover:before { opacity: 1; transition-duration: 0.5s; }
+    .sidebar__link:hover { color: var(--color-accent-game); }
+    /** Map Overlay **/
+    .map-overlay {
+      position: fixed; inset: 0; pointer-events: none; z-index: 100;
+    }
+    .map-overlay::before, .map-overlay::after {
+      position: absolute; content: ""; height: 50%; width: 0%;
+      background-color: var(--color-dark-10);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1;
+    }
+    .map-overlay::before { left: 0; top: 0; }
+    .map-overlay::after { right: 0; top: 50%; }
+    .map-overlay.active { pointer-events: auto; }
+    .map-overlay.active::before, .map-overlay.active::after { width: 100%; }
+    .map-overlay__inner {
+      position: relative; z-index: 2; height: 100%;
+      opacity: 0; transition: opacity 0.3s 0.2s;
+    }
+    .map-overlay.active .map-overlay__inner { opacity: 1; }
+    .map-overlay__close {
+      position: absolute; top: 1.25rem; right: 1.25rem; cursor: pointer;
+      letter-spacing: 0.05em; transition: all 0.2s; z-index: 3;
+      background-color: var(--color-accent-game);
+    }
+    @media (width <= 47.99875rem) {
+      .map-overlay__close {
+        top: 90%; left: 50%; transform: translateX(-50%);
+        background-color: var(--color-accent-game);
+        border-color: var(--color-accent-game); color: var(--color-light-10);
+      }
+    }
+    .map-overlay__close:hover {
+      background: var(--color-light-10); border-color: var(--color-light-10);
+    }
+    .map-overlay__content {
+      height: 100%; width: 100%; display: flex;
+      justify-content: center; color: var(--color-light-10); position: relative;
+    }
+    .map-embed {
+      width: 100%; height: 35rem; display: block;
+      filter: grayscale(100%) invert(92%) contrast(1.1);
+      transition: filter 0.5s ease;
+    }
+    .map-description {
+      z-index: 3; position: absolute; background-color: var(--color-light-10);
+      padding: 0.625rem 1.25rem; top: 1.25rem; left: 1.25rem;
+    }
+    @media (width <= 47.99875rem) {
+      .map-description {
+        top: 10%; left: 50%; transform: translateX(-50%);
+      }
+    }
+    /** Social **/
+    .social__list {
+      display: flex; gap: 0.625rem; justify-content: center; padding: 1.25rem;
+    }
+    @media (width <= 47.99875rem) { .social__list { padding: 0.625rem; } }
+    .social__item svg {
+      height: 1.5625rem; width: 1.5625rem;
+      fill: var(--color-light-40); color: var(--color-light-40);
+    }
+    .social__item:hover svg {
+      fill: var(--color-accent-game); color: var(--color-accent-game);
+    }
+    .phone {
+      display: flex; gap: 1.875rem; justify-content: center;
+      padding: 1.25rem; font-size: 0.875rem;
+    }
+    @media (width <= 47.99875rem) {
+      .phone {
+        flex-direction: column; align-items: center;
+        gap: 0.625rem; padding: 0.625rem;
+      }
+    }
+    /** Tournament Section **/
+    .tournament {
+      min-height: 100vh; position: relative; padding: 6.25rem 0;
+    }
+    .tournament__inner { position: relative; z-index: 3; }
+    .section-title {
+      font-family: var(--font-family-strict); font-size: 3.75rem;
+      color: var(--color-light-10); text-align: center;
+      margin-bottom: 1.25rem; text-transform: uppercase;
+      letter-spacing: 0.125rem;
+    }
+    .section-subtitle {
+      font-family: var(--font-family-accent); font-size: 1.25rem;
+      color: var(--color-dark-35); text-align: center;
+      margin-bottom: 3.75rem;
+    }
+    .tournament-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.875rem;
+    }
+    @media (width <= 90.06125rem) {
+      .tournament-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (width <= 47.99875rem) {
+      .tournament-grid { grid-template-columns: 1fr; }
+    }
+    .tournament-card {
+      background: linear-gradient(145deg, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.9) 100%);
+      border: 1px solid rgba(255, 22, 104, 0.2);
+      border-radius: var(--border-r-s); overflow: hidden;
+      transition: all 0.4s ease; position: relative;
+    }
+    .tournament-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--color-accent-game), transparent);
+      transform: scaleX(0); transition: transform 0.4s ease;
+    }
+    .tournament-card:hover {
+      transform: translateY(-10px); border-color: rgba(255, 22, 104, 0.5);
+      box-shadow: 0 20px 40px rgba(255, 22, 104, 0.2);
+    }
+    .tournament-card:hover::before { transform: scaleX(1); }
+    .tournament-card__image {
+      width: 100%; height: 12.5rem; overflow: hidden; position: relative;
+    }
+    .tournament-card__image img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .tournament-card:hover .tournament-card__image img { transform: scale(1.1); }
+    .tournament-card__content { padding: 1.5625rem; }
+    .tournament-card__title {
+      font-family: var(--font-family-strict); font-size: 1.5rem;
+      color: var(--color-light-10); margin-bottom: 0.625rem;
+      text-transform: uppercase;
+    }
+    .tournament-card__description {
+      font-size: 0.875rem; color: var(--color-dark-35);
+      margin-bottom: 1.25rem; line-height: 1.6;
+    }
+    .tournament-card__info {
+      display: flex; flex-direction: column; gap: 0.5rem;
+      margin-bottom: 1.25rem; padding: 0.9375rem;
+      background: rgba(255, 22, 104, 0.05);
+      border-radius: var(--border-r-s);
+      border-left: 3px solid var(--color-accent-game);
+    }
+    .tournament-card__prize {
+      font-size: 1rem; color: var(--color-accent-game); font-weight: 700;
+    }
+    .tournament-card__date {
+      font-size: 0.875rem; color: var(--color-dark-35);
+    }
+    /** Hardware Section **/
+    .hardware {
+      min-height: 100vh; position: relative; padding: 6.25rem 0;
+    }
+    .hardware__inner { position: relative; z-index: 3; }
+    .hardware-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.875rem;
+    }
+    @media (width <= 90.06125rem) {
+      .hardware-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (width <= 47.99875rem) {
+      .hardware-grid { grid-template-columns: 1fr; }
+    }
+    .hardware-item {
+      background: linear-gradient(145deg, rgba(26, 26, 26, 0.6) 0%, rgba(10, 10, 10, 0.8) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-r-s); padding: 2.5rem 1.875rem;
+      text-align: center; transition: all 0.4s ease;
+      position: relative; overflow: hidden;
+    }
+    .hardware-item::before {
+      content: ""; position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255, 22, 104, 0.1) 0%, transparent 70%);
+      opacity: 0; transition: opacity 0.4s ease;
+    }
+    .hardware-item:hover {
+      transform: translateY(-10px); border-color: rgba(255, 22, 104, 0.4);
+      box-shadow: 0 20px 60px rgba(255, 22, 104, 0.15);
+    }
+    .hardware-item:hover::before { opacity: 1; }
+    .hardware-item:hover .hardware-item__icon svg {
+      transform: scale(1.1) rotate(5deg);
+      filter: drop-shadow(0 0 20px rgba(255, 22, 104, 0.6));
+    }
+    .hardware-item__icon {
+      position: relative; z-index: 2; margin-bottom: 1.5625rem;
+    }
+    .hardware-item__icon svg { transition: all 0.4s ease; }
+    .hardware-item__title {
+      position: relative; z-index: 2; font-family: var(--font-family-strict);
+      font-size: 1.375rem; color: var(--color-light-10);
+      margin-bottom: 0.9375rem; text-transform: uppercase;
+    }
+    .hardware-item__description {
+      position: relative; z-index: 2; font-size: 0.875rem;
+      color: var(--color-dark-35); line-height: 1.6;
+    }
+    /** Question Section **/
+    .question {
+      min-height: 100vh; position: relative; padding: 6.25rem 0;
+    }
+    .question__inner { position: relative; z-index: 3; }
+    .faq-list { max-width: 56.25rem; margin: 0 auto; }
+    .faq-item {
+      margin-bottom: 1.25rem;
+      background: linear-gradient(145deg, rgba(26, 26, 26, 0.6) 0%, rgba(10, 10, 10, 0.8) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: var(--border-r-s); overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    .faq-item:hover { border-color: rgba(255, 22, 104, 0.3); }
+    .faq-item__header {
+      width: 100%; padding: 1.5625rem 1.875rem; background: transparent;
+      border: none; display: flex; justify-content: space-between;
+      align-items: center; cursor: pointer; transition: all 0.3s ease;
+    }
+    .faq-item__header:hover { background: rgba(255, 22, 104, 0.05); }
+    .faq-item__question {
+      font-family: var(--font-family-strict); font-size: 1.125rem;
+      color: var(--color-light-10); text-transform: uppercase; text-align: left;
+    }
+    .faq-item__icon {
+      font-size: 1.875rem; color: var(--color-accent-game);
+      transition: transform 0.4s ease; line-height: 1;
+    }
+    .faq-item__content {
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    }
+    .faq-item__content p {
+      padding: 0 1.875rem 1.5625rem; font-size: 0.9375rem;
+      color: var(--color-dark-35); line-height: 1.7;
+    }
+    .faq-item.active { border-color: rgba(255, 22, 104, 0.4); }
+    .faq-item.active .faq-item__icon { transform: rotate(45deg); }
+    .faq-item.active .faq-item__content { max-height: 12.5rem; }
+    /** Sections positioning **/
+    .hero-section, .tournament-section, .hardware-section, .question-section {
+      position: relative;
+    }
+    /** Scroll indicator **/
+    .scroll-indicator {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%); display: flex;
+      flex-direction: column; align-items: center; gap: 0.5rem; z-index: 10;
+    }
+    .scroll-indicator span {
+      width: 0.375rem; height: 0.375rem; border-radius: 50%;
+      background: var(--color-accent-game); animation: scroll-bounce 2s infinite;
+    }
+    .scroll-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .scroll-indicator span:nth-child(3) { animation-delay: 0.4s; }
+    /** Animations on scroll **/
+    .animate-on-scroll {
+      opacity: 0; transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .animate-on-scroll.is-visible {
+      opacity: 1; transform: translateY(0);
+    }
+    /** Lenis smooth scroll styles **/
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+    .lenis.lenis-scrolling iframe { pointer-events: none; }
+  </style>
+</head>
+<body class="cyber-page">
+<header class="header">
+  <div class="header__inner container">
+    <div class="logo">
+      <p class="logo__text">Qua<span>tt</span>ra</p>
+    </div>
+    <nav class="nav hidden-mobile">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <a href="#home" class="nav__link">
+            <svg fill="#000000" width="800px" height="800px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <title>home</title>
+              <path d="M28 4v24h-8v-8h-8v8h-8v-24h4v4h4v-4h8v4h4v-4h4z"></path>
+              <span class="nav__description">home</span>
+            </svg>
+          </a>
+        </li>
+        <li class="nav__item">
+          <a href="#tournament" class="nav__link">
+            <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <g>
+                <path fill="none" d="M0 0h24v24H0z"/>
+                <path fill-rule="nonzero" d="M17.457 3L21 3.003l.002 3.523-5.467 5.466 2.828 2.829 1.415-1.414 1.414 1.414-2.474 2.475 2.828 2.829-1.414 1.414-2.829-2.829-2.475 2.475-1.414-1.414 1.414-1.415-2.829-2.828-2.828 2.828 1.415 1.415-1.414 1.414-2.475-2.475-2.829 2.829-1.414-1.414 2.829-2.83-2.475-2.474 1.414-1.414 1.414 1.413 2.827-2.828-5.46-5.46L3 3l3.546.003 5.453 5.454L17.457 3zm-7.58 10.406L7.05 16.234l.708.707 2.827-2.828-.707-.707zm9.124-8.405h-.717l-4.87 4.869.706.707 4.881-4.879v-.697zm-14 0v.7l11.241 11.241.707-.707L5.716 5.002l-.715-.001z"/>
+              </g>
+            </svg>
+            <span class="nav__description">tournament</span>
+          </a>
+        </li>
+        <li class="nav__item">
+          <a href="#hardware" class="nav__link">
+            <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 4H5v2H3v14h7v-8H5V6h14v6h-5v8h7V6h-2V4zm-3 10h3v4h-3v-4zm-8 0v4H5v-4h3z" fill="#000000"/>
+            </svg>
+            <span class="nav__description">hardware</span>
+          </a>
+        </li>
+        <li class="nav__item">
+          <a href="#question" class="nav__link">
+            <svg width="800px" height="800px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" fill="none" width="20" height="20"/>
+              <g>
+                <path d="M5 10c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm12-2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-7 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+              </g>
+            </svg>
+            <span class="nav__description">question</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <button class="burger" aria-label="Открыть меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="section hero-section" id="home">
+  <div class="bg" style="background-image: url('images/hero.png');"></div>
+  <div class="glow-effect glow-effect--top"></div>
+  <div class="glow-effect glow-effect--bottom"></div>
+  <div class="hero">
+    <div class="hero__inner container">
+      <div class="hero__content">
+        <h1 class="hero__title animate-on-scroll">E-SPORTS ZONE</h1>
+        <p class="hero__subtitle animate-on-scroll">Погрузись в мир киберспорта нового поколения</p>
+        <div class="hero__buttons animate-on-scroll">
+          <button class="button button--full-a button-play">Играть</button>
+          <button class="button button-map" aria-label="Открыть карту">Карта</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</section>
+
+<!-- TOURNAMENT SECTION -->
+<section class="section tournament-section" id="tournament">
+  <div class="tournament">
+    <div class="bg--2" style="background-image: url('images/mask.png');"></div>
+    <div class="glow-effect glow-effect--center"></div>
+    <div class="tournament__inner container">
+      <h2 class="section-title animate-on-scroll">Турниры</h2>
+      <p class="section-subtitle animate-on-scroll">Участвуй в соревнованиях и побеждай</p>
+
+      <div class="tournament-grid">
+        <div class="tournament-card animate-on-scroll">
+          <div class="tournament-card__image">
+            <img src="images/slide1.png" alt="CS2 Tournament">
+          </div>
+          <div class="tournament-card__content">
+            <h3 class="tournament-card__title">CS2 Championship</h3>
+            <p class="tournament-card__description">Еженедельный турнир по Counter-Strike 2</p>
+            <div class="tournament-card__info">
+              <span class="tournament-card__prize">Призовой фонд: 50,000₽</span>
+              <span class="tournament-card__date">Каждую субботу</span>
+            </div>
+            <button class="button button--full-a">Регистрация</button>
+          </div>
+        </div>
+
+        <div class="tournament-card animate-on-scroll">
+          <div class="tournament-card__image">
+            <img src="images/pc-bootcamp.png" alt="Dota 2 Tournament">
+          </div>
+          <div class="tournament-card__content">
+            <h3 class="tournament-card__title">Dota 2 Battle</h3>
+            <p class="tournament-card__description">Командные сражения 5x5</p>
+            <div class="tournament-card__info">
+              <span class="tournament-card__prize">Призовой фонд: 100,000₽</span>
+              <span class="tournament-card__date">Каждое воскресенье</span>
+            </div>
+            <button class="button button--full-a">Регистрация</button>
+          </div>
+        </div>
+
+        <div class="tournament-card animate-on-scroll">
+          <div class="tournament-card__image">
+            <img src="images/mask2.png" alt="Valorant Tournament">
+          </div>
+          <div class="tournament-card__content">
+            <h3 class="tournament-card__title">Valorant Cup</h3>
+            <p class="tournament-card__description">Тактический шутер 5x5</p>
+            <div class="tournament-card__info">
+              <span class="tournament-card__prize">Призовой фонд: 75,000₽</span>
+              <span class="tournament-card__date">Каждую пятницу</span>
+            </div>
+            <button class="button button--full-a">Регистрация</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HARDWARE SECTION -->
+<section class="section hardware-section" id="hardware">
+  <div class="hardware">
+    <div class="bg--2" style="background-image: url('images/hero.png');"></div>
+    <div class="glow-effect glow-effect--left"></div>
+    <div class="hardware__inner container">
+      <h2 class="section-title animate-on-scroll">Оборудование</h2>
+      <p class="section-subtitle animate-on-scroll">Топовое железо для максимального FPS</p>
+
+      <div class="hardware-grid">
+        <div class="hardware-item animate-on-scroll">
+          <div class="hardware-item__icon">
+            <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm2 0v12h12V6H6zm3 3h2v2H9V9zm4 0h2v2h-2V9zm-4 4h2v2H9v-2zm4 0h2v2h-2v-2z" fill="#ff1668"/>
+            </svg>
+          </div>
+          <h3 class="hardware-item__title">RTX 4090</h3>
+          <p class="hardware-item__description">Флагманские видеокарты для ультра настроек</p>
+        </div>
+
+        <div class="hardware-item animate-on-scroll">
+          <div class="hardware-item__icon">
+            <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="#ff1668"/>
+            </svg>
+          </div>
+          <h3 class="hardware-item__title">Intel i9-14900K</h3>
+          <p class="hardware-item__description">Процессоры последнего поколения</p>
+        </div>
+
+        <div class="hardware-item animate-on-scroll">
+          <div class="hardware-item__icon">
+            <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h2v2H6zm4-4h8v2h-8zm0 4h8v2h-8z" fill="#ff1668"/>
+            </svg>
+          </div>
+          <h3 class="hardware-item__title">240Hz Мониторы</h3>
+          <p class="hardware-item__description">Максимальная плавность изображения</p>
+        </div>
+
+        <div class="hardware-item animate-on-scroll">
+          <div class="hardware-item__icon">
+            <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#ff1668"/>
+            </svg>
+          </div>
+          <h3 class="hardware-item__title">Механические клавиатуры</h3>
+          <p class="hardware-item__description">Профессиональные девайсы для киберспорта</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUESTION SECTION -->
+<section class="section question-section" id="question">
+  <div class="question">
+    <div class="bg--2" style="background-image: url('images/mask.png');"></div>
+    <div class="glow-effect glow-effect--right"></div>
+    <div class="question__inner container">
+      <h2 class="section-title animate-on-scroll">Вопросы</h2>
+      <p class="section-subtitle animate-on-scroll">Часто задаваемые вопросы</p>
+
+      <div class="faq-list">
+        <div class="faq-item animate-on-scroll">
+          <button class="faq-item__header">
+            <span class="faq-item__question">Как забронировать место?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__content">
+            <p>Вы можете забронировать место через наш сайт, позвонив по телефону или посетив клуб лично.</p>
+          </div>
+        </div>
+
+        <div class="faq-item animate-on-scroll">
+          <button class="faq-item__header">
+            <span class="faq-item__question">Сколько стоит час игры?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__content">
+            <p>Стоимость зависит от зоны и времени суток. Цены начинаются от 100₽ за час в стандартной зоне.</p>
+          </div>
+        </div>
+
+        <div class="faq-item animate-on-scroll">
+          <button class="faq-item__header">
+            <span class="faq-item__question">Есть ли скидки для студентов?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__content">
+            <p>Да, мы предоставляем скидки 20% для студентов при предъявлении студенческого билета.</p>
+          </div>
+        </div>
+
+        <div class="faq-item animate-on-scroll">
+          <button class="faq-item__header">
+            <span class="faq-item__question">Можно ли проводить свои турниры?</span>
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__content">
+            <p>Конечно! Мы организуем и проводим частные турниры. Свяжитесь с администратором для деталей.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="sidebar">
+  <div class="sidebar__inner">
+    <button class="burger burger2" aria-label="Закрыть меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar__content">
+      <div class="sidebar__nav">
+        <ul class="sidebar__list">
+          <li class="sidebar__item">
+            <a href="index.html" class="sidebar__link">INDEX</a>
+          </li>
+          <li class="sidebar__item">
+            <a href="#" class="sidebar__link">CYBERCLUB</a>
+          </li>
+          <li class="sidebar__item">
+            <a href="food.html" class="sidebar__link">KITCHEN</a>
+          </li>
+          <li class="sidebar__item">
+            <a href="lounge.html" class="sidebar__link">LOUNGE</a>
+          </li>
+        </ul>
+      </div>
+      <div class="sidebar__title">
+        <a href=""><p>Quattra</p></a>
+      </div>
+      <div class="social">
+        <ul class="social__list">
+          <li class="social__item">
+            <a href="#" class="social__link">
+              <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M23.4493 5.94799C23.6161 5.40154 23.4493 5 22.6553 5H20.0297C19.3621 5 19.0543 5.34687 18.8874 5.72936C18.8874 5.72936 17.5521 8.92607 15.6606 11.0025C15.0487 11.6036 14.7705 11.7949 14.4367 11.7949C14.2698 11.7949 14.0194 11.6036 14.0194 11.0572V5.94799C14.0194 5.29225 13.8345 5 13.2781 5H9.15213C8.73494 5 8.48403 5.30434 8.48403 5.59278C8.48403 6.21441 9.42974 6.35777 9.52722 8.10641V11.9042C9.52722 12.7368 9.37413 12.8878 9.04032 12.8878C8.15023 12.8878 5.98507 9.67682 4.70093 6.00261C4.44927 5.28847 4.19686 5 3.52583 5H0.900218C0.150044 5 0 5.34687 0 5.72936C0 6.41244 0.890141 9.80039 4.14464 14.2812C6.31429 17.3412 9.37118 19 12.1528 19C13.8218 19 14.0283 18.6316 14.0283 17.997V15.6842C14.0283 14.9474 14.1864 14.8003 14.7149 14.8003C15.1043 14.8003 15.7719 14.9916 17.3296 16.467C19.1099 18.2156 19.4034 19 20.4047 19H23.0304C23.7805 19 24.1556 18.6316 23.9392 17.9045C23.7024 17.1799 22.8525 16.1286 21.7247 14.8823C21.1127 14.1719 20.1947 13.4069 19.9165 13.0243C19.5271 12.5326 19.6384 12.314 19.9165 11.8769C19.9165 11.8769 23.1155 7.45067 23.4493 5.94799Z" fill="#000000"/>
+              </svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="#" class="social__link">
+              <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m20.665 3.717-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/></svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="#" class="social__link">
+              <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.265 3 3 6.236v13.223h4.502V21l2.531.85 2.392-2.391h3.658l4.923-4.924V3H4.265zm15.052 10.691-2.813 2.814h-4.502l-2.391 2.391v-2.391H5.813V4.688h13.504v9.003zm-2.812-5.767v4.923h-1.688V7.924h1.688zm-4.502 0v4.923h-1.688V7.924h1.688z"/></svg>
+            </a>
+          </li>
+          <li class="social__item">
+            <a href="#" class="social__link">
+              <svg fill="#000000" width="800px" height="800px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" class="icon">
+                <path d="M941.3 296.1a112.3 112.3 0 0 0-79.2-79.3C792.2 198 512 198 512 198s-280.2 0-350.1 18.7A112.12 112.12 0 0 0 82.7 296C64 366 64 512 64 512s0 146 18.7 215.9c10.3 38.6 40.7 69 79.2 79.3C231.8 826 512 826 512 826s280.2 0 350.1-18.8c38.6-10.3 68.9-40.7 79.2-79.3C960 658 960 512 960 512s0-146-18.7-215.9zM423 646V378l232 133-232 135z"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+        <div class="phone">
+          <p class="phone__number">+7 931-080-22-42</p>
+          <p class="phone__number">+7 931-080-22-43</p>
+          <p class="phone__address">Ул.Строителей д.42</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="map-overlay">
+  <div class="map-overlay__inner">
+    <button class="map-overlay__close button" aria-label="Закрыть">CLOSE</button>
+    <div class="map-description">ул. Строителей, 98</div>
+    <div class="map-overlay__content">
+      <div class="map-embed">
+        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Adf1930bcf6e1bc207f020143efb3769e1e084557a1dd2fa7eb26a12828306a5b&amp;source=constructor" width="100%" height="1080px" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // Burger menu functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const burgers = document.querySelectorAll('.burger:not(.burger2)');
+    burgers.forEach(function(burger) {
+      burger.addEventListener('click', function() {
+        this.classList.toggle('active');
+      });
+    });
+  });
+  // Sidebar functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const burgers = document.querySelectorAll('.burger');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (!sidebar) return;
+
+    const setState = (isOpen) => {
+      sidebar.classList.toggle('active', isOpen);
+      burgers.forEach(btn => btn.classList.toggle('active', isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    };
+
+    burgers.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setState(!sidebar.classList.contains('active'));
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (sidebar.classList.contains('active') &&
+              !sidebar.contains(e.target) &&
+              !e.target.closest('.burger')) {
+        setState(false);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+        setState(false);
+      }
+    });
+  });
+  // Map overlay functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const mapBtn = document.querySelector('.button-map');
+    const mapOverlay = document.querySelector('.map-overlay');
+    const mapClose = document.querySelector('.map-overlay__close');
+
+    if (!mapOverlay) return;
+
+    const toggleMap = (isOpen) => {
+      mapOverlay.classList.toggle('active', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    };
+
+    mapBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMap(true);
+    });
+
+    mapClose?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMap(false);
+    });
+
+    mapOverlay?.addEventListener('click', (e) => {
+      if (e.target === mapOverlay) {
+        toggleMap(false);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mapOverlay?.classList.contains('active')) {
+        toggleMap(false);
+      }
+    });
+  });
+  // Scroll animations with Intersection Observer
+  document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(el => observer.observe(el));
+  });
+  // FAQ Accordion functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const header = item.querySelector('.faq-item__header');
+
+      header.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+          }
+        });
+
+        item.classList.toggle('active', !isActive);
+      });
+    });
+  });
+  // Lenis smooth scroll (CDN version)
+  document.addEventListener('DOMContentLoaded', function() {
+    // Check if Lenis is available via CDN
+    if (typeof Lenis !== 'undefined') {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+      window.lenis = lenis;
+    }
+  });
+</script>
+
+<!-- Lenis CDN -->
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</body>
+</html>
